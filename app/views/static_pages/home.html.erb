@@ -1,0 +1,9 @@
+Welcome to Pillar!
+
+<%= link_to "Register", register_path %>
+<%= link_to "Sign In", sign_in_path %>
+
+<% if artist_signed_in? %>
+	<%= current_artist.username %> is signed in.
+	<%= link_to "Sign Out", sign_out_path %>
+<% end %>

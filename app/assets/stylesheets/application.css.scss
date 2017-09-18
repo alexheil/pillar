@@ -1,0 +1,51 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+
+$green: #338A2E;
+$green-accent: #8DCF8A;
+$blue: #226764;
+$blue-accent: #679B99;
+$orange: #AA6B39;
+$orange-accent: #FFD0AA;
+$red: #A8383B;
+$red-accent: #FDA8AA;
+$black: #212121;
+$white: #eeeeee;
+$font: 'Open Sans', Helvetica, Arial, sans-serif;
+
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.75em;
+  font-family: $font;
+  font-weight: 300;
+  color: $white;
+  background: $black;
+}
+
+a {
+  color: $green;
+  text-decoration: none;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+  &:hover {
+    color: $green-accent;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+  }
+}
+
+::selection {
+  color: $white;
+  background: $green;
+}
+
+::-moz-selection {
+  color: $white;
+  background: $green;
+}
