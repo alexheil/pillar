@@ -22,4 +22,7 @@ Rails.application.routes.draw do
     resource :profile, controller: 'artists/profiles', only: [:edit, :update]
   end
 
+  #shop
+  #items
+
 end
