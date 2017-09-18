@@ -1,0 +1,2 @@
+class ArtistProfile < ApplicationRecord
+end

@@ -18,4 +18,8 @@ Rails.application.routes.draw do
     get "sign_out", to: "artists/sessions#destroy"
   end
 
+  resources :artists, controller: 'artists/artists', only: [:show, :index] do
+    resource :profile, controller: 'artists/profiles', only: [:edit, :update]
+  end
+
 end

@@ -27,13 +27,13 @@ body {
 }
 
 a {
-  color: $green;
+  color: $red;
   text-decoration: none;
   -webkit-transition: .3s;
   -moz-transition: .3s;
   -o-transition: .3s;
   &:hover {
-    color: $green-accent;
+    color: $red-accent;
     -webkit-transition: .3s;
     -moz-transition: .3s;
     -o-transition: .3s;
@@ -42,10 +42,10 @@ a {
 
 ::selection {
   color: $white;
-  background: $green;
+  background: $red;
 }
 
 ::-moz-selection {
   color: $white;
-  background: $green;
+  background: $red;
 }

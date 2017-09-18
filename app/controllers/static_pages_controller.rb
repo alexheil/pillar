@@ -1,5 +1,7 @@
 class StaticPagesController < ApplicationController
 
+	before_action :redirect_if_signed_in, only: [:register, :sign_in]
+
 	def home
 	end
 
@@ -26,5 +28,14 @@ class StaticPagesController < ApplicationController
 
 	def sign_in
 	end
+
+	private
+
+		def redirect_if_signed_in
+	    if artist_signed_in?
+	      redirect_to root_url
+	      flash[:notice] = "You are signed in!"
+	    end
+	  end
 
 end
