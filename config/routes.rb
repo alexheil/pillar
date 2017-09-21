@@ -20,6 +20,10 @@ Rails.application.routes.draw do
 
   resources :artists, controller: 'artists/artists', only: [:show, :index] do
     resource :profile, controller: 'artists/profiles', only: [:edit, :update]
+    #resource :genre, controller: 'artists/genres'
+    #resource :location, controller: 'artists/locations'
+    #resource :theme, controller: 'artists/themes'
+    #resources :members, 'artists/members'
   end
 
 end

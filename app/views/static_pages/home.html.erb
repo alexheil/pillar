@@ -5,5 +5,8 @@ Welcome to Pillar!
 
 <% if artist_signed_in? %>
 	<%= current_artist.username %> is signed in.
+	<% if current_artist.artist_profile.email.blank? %>
+	you have profile
+	<% end %>
 	<%= link_to "Sign Out", sign_out_path %>
 <% end %>

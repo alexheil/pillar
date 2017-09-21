@@ -10,7 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170917185230) do
+ActiveRecord::Schema.define(version: 20170918191646) do
+
+  create_table "artist_profiles", force: :cascade do |t|
+    t.integer  "artist_id"
+    t.text     "biography",             default: ""
+    t.integer  "year_founded"
+    t.string   "email",                 default: ""
+    t.string   "website_url",           default: ""
+    t.string   "facebook_handle",       default: ""
+    t.string   "facebook_url",          default: ""
+    t.string   "twitter_handle",        default: ""
+    t.string   "twitter_url",           default: ""
+    t.string   "instagram_handle",      default: ""
+    t.string   "instagram_url",         default: ""
+    t.string   "youtube_handle",        default: ""
+    t.string   "youtube_url",           default: ""
+    t.string   "letlyrics_url",         default: ""
+    t.string   "record_label",          default: ""
+    t.string   "influences",            default: ""
+    t.string   "general_manager_name",  default: ""
+    t.string   "general_manager_email", default: ""
+    t.string   "press_contact_name",    default: ""
+    t.string   "press_contact_email",   default: ""
+    t.string   "booking_agent_name",    default: ""
+    t.string   "booking_agent_email",   default: ""
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.index ["artist_id"], name: "index_artist_profiles_on_artist_id"
+  end
 
   create_table "artists", force: :cascade do |t|
     t.string   "username",               default: "", null: false

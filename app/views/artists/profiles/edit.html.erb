@@ -1,0 +1,5 @@
+<%= form_for(@profile, url: artist_profile_path) do |f| %>
+	<%= render 'errors/profile_errors' %>
+
+	<%= f.submit "Update profile", data: { disable_with: 'Updating...' } %>
+<% end %>

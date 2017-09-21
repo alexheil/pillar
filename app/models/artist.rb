@@ -7,9 +7,18 @@ class Artist < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
 	attr_accessor :login
-	
+
 	validates :username, presence: true, uniqueness: true, length: { maximum: 50 }, format: { with: /\A[a-zA-Z0-9 ]+\Z/i }, :case_sensitive => false
 	validate :validate_username
+
+	has_one :artist_profile
+	has_one :genre
+	has_one :location
+	has_one :theme
+	has_many :members
+	has_many :photos
+	has_many :videos
+	has_many :posts
 
   before_save :should_generate_new_friendly_id?, if: :username_changed?
   before_save :downcase_username
