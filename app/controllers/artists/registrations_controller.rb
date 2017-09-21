@@ -11,7 +11,7 @@ class Artists::RegistrationsController < Devise::RegistrationsController
   def create
     super
     @artist.create_artist_profile(profile_params)
-    #@artist.create_artist_genre(genre_params)
+    @artist.create_artist_genre(genre_params)
     #@artist.create_artist_location(location_params)
     #@artist.create_artist_theme(theme_params)
   end
@@ -44,6 +44,10 @@ class Artists::RegistrationsController < Devise::RegistrationsController
 
     def profile_params
       params.permit(:biography, :year_founded, :email, :website_url, :facebook_handle, :facebook_url, :twitter_handle, :twitter_url, :instagram_handle, :instagram_url, :youtube_handle, :youtube_url, :letlyrics_url, :record_label, :influences, :general_manager_name, :general_manager_email, :press_contact_name, :press_contact_email, :booking_agent_name, :booking_agent_email)
+    end
+
+    def genre_params
+      params.permit(:genre, :subgenre)
     end
 
   # protected

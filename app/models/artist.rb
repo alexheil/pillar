@@ -12,7 +12,7 @@ class Artist < ApplicationRecord
 	validate :validate_username
 
 	has_one :artist_profile
-	has_one :genre
+	has_one :artist_genre
 	has_one :location
 	has_one :theme
 	has_many :members
