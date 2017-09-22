@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170921183103) do
+ActiveRecord::Schema.define(version: 20170921202249) do
 
   create_table "artist_genres", force: :cascade do |t|
     t.integer  "artist_id"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 20170921183103) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["artist_id"], name: "index_artist_genres_on_artist_id"
+  end
+
+  create_table "artist_locations", force: :cascade do |t|
+    t.integer  "artist_id"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_artist_locations_on_artist_id"
   end
 
   create_table "artist_profiles", force: :cascade do |t|
@@ -47,6 +57,17 @@ ActiveRecord::Schema.define(version: 20170921183103) do
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.index ["artist_id"], name: "index_artist_profiles_on_artist_id"
+  end
+
+  create_table "artist_themes", force: :cascade do |t|
+    t.integer  "artist_id"
+    t.string   "main_color",       default: ""
+    t.string   "text_color",       default: ""
+    t.string   "background_color", default: ""
+    t.string   "link_color",       default: ""
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["artist_id"], name: "index_artist_themes_on_artist_id"
   end
 
   create_table "artists", force: :cascade do |t|

@@ -13,9 +13,9 @@ class Artist < ApplicationRecord
 
 	has_one :artist_profile
 	has_one :artist_genre
-	has_one :location
-	has_one :theme
-	has_many :members
+	has_one :artist_location
+	has_one :artist_theme
+	has_many :artist_members
 	has_many :photos
 	has_many :videos
 	has_many :posts

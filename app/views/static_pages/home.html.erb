@@ -11,5 +11,11 @@ Welcome to Pillar!
 	<% if current_artist.artist_genre.genre.blank? %>
 	you have genre
 	<% end %>
+	<% if current_artist.artist_location.city.blank? %>
+	you have location
+	<% end %>
+	<% if current_artist.artist_theme.main_color.blank? %>
+	you have theme
+	<% end %>
 	<%= link_to "Sign Out", sign_out_path %>
 <% end %>

@@ -12,8 +12,8 @@ class Artists::RegistrationsController < Devise::RegistrationsController
     super
     @artist.create_artist_profile(profile_params)
     @artist.create_artist_genre(genre_params)
-    #@artist.create_artist_location(location_params)
-    #@artist.create_artist_theme(theme_params)
+    @artist.create_artist_location(location_params)
+    @artist.create_artist_theme(theme_params)
   end
 
   # GET /resource/edit
@@ -48,6 +48,14 @@ class Artists::RegistrationsController < Devise::RegistrationsController
 
     def genre_params
       params.permit(:genre, :subgenre)
+    end
+
+    def location_params
+      params.permit(:city, :state, :year)
+    end
+
+    def theme_params
+      params.permit(:main_color, :text_color, :background_color, :link_color)
     end
 
   # protected
