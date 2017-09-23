@@ -1,6 +1,6 @@
 class Artists::MembersController < ApplicationController
 
-	before_action :authenticate_artist!
+  before_action :authenticate_artist!
   before_action :correct_artist
   before_action :set_artist
 
@@ -15,8 +15,8 @@ class Artists::MembersController < ApplicationController
     end
   end
 
-	def update
-		@member = ArtistMember.find(params[:id])
+  def update
+    @member = ArtistMember.find(params[:id])
     if @member.update_attributes(member_params)
       flash[:notice] = "You've successfully updated your members!"
       redirect_to current_artist
@@ -24,24 +24,24 @@ class Artists::MembersController < ApplicationController
       render 'edit'
       flash[:alert] = "You failed to update your members."
     end
-	end
+  end
 
-	private
+  private
 
-		def set_artist
-			@artist = current_artist
-		end
+    def set_artist
+      @artist = current_artist
+    end
 
-		def correct_artist
-			@artist = Artist.friendly.find(params[:artist_id])
+    def correct_artist
+      @artist = Artist.friendly.find(params[:artist_id])
       if current_artist != @artist
         redirect_to artist_path(@artist)
         flash[:alert] = "This is not your profile."
       end
-		end
+    end
 
-		def member_params
-			params.require(:artist_member).permit(:instrument, :name, :past)
-		end
+    def member_params
+      params.require(:artist_member).permit(:instrument, :name, :past)
+    end
 
 end

@@ -1,73 +1,73 @@
 <%= form_for(@profile, url: artist_profile_path) do |f| %>
-	<%= render 'errors/profile_errors' %>
+  <%= render 'errors/profile_errors' %>
 
-	<div class="field">
+  <div class="field">
     <%= f.label :year_founded %><br />
     <%= f.text_field :year_founded %>
   </div>
 
-	<%= f.submit "Update profile", data: { disable_with: 'Updating...' } %>
+  <%= f.submit "Update profile", data: { disable_with: 'Updating...' } %>
 <% end %>
 
 <%= form_for(@theme, url: artist_theme_path) do |f| %>
-	<%= render 'errors/profile_errors' %>
+  <%= render 'errors/profile_errors' %>
 
-	<div class="field">
+  <div class="field">
     <%= f.label :main_color %><br />
     <%= f.text_field :main_color %>
   </div>
 
-	<%= f.submit "Update theme", data: { disable_with: 'Updating...' } %>
+  <%= f.submit "Update theme", data: { disable_with: 'Updating...' } %>
 <% end %>
 
 <%= form_for(@location, url: artist_location_path) do |f| %>
-	<%= render 'errors/profile_errors' %>
+  <%= render 'errors/profile_errors' %>
 
-	<div class="field">
+  <div class="field">
     <%= f.label :city %><br />
     <%= f.text_field :city %>
   </div>
 
-	<%= f.submit "Update location", data: { disable_with: 'Updating...' } %>
+  <%= f.submit "Update location", data: { disable_with: 'Updating...' } %>
 <% end %>
 
 <%= form_for(@genre, url: artist_genre_path) do |f| %>
-	<%= render 'errors/profile_errors' %>
+  <%= render 'errors/profile_errors' %>
 
-	<div class="field">
+  <div class="field">
     <%= f.label :genre %><br />
     <%= f.text_field :genre %>
   </div>
 
-	<%= f.submit "Update genre", data: { disable_with: 'Updating...' } %>
+  <%= f.submit "Update genre", data: { disable_with: 'Updating...' } %>
 <% end %>
 
 <% if @artist.artist_members.any? %>
-	<% @artist.artist_members.each do |member| %>
-		<%= form_for(member, url: artist_member_path(@artist, member)) do |f| %>
-			<%= render 'errors/profile_errors' %>
+  <% @artist.artist_members.each do |member| %>
+    <%= form_for(member, url: artist_member_path(@artist, member)) do |f| %>
+      <%= render 'errors/profile_errors' %>
 
-			<div class="field">
-	    	<%= f.label :name %><br />
-	    	<%= f.text_field :name %>
-	  	</div>
+      <div class="field">
+        <%= f.label :name %><br />
+        <%= f.text_field :name %>
+      </div>
 
-			<%= f.submit "Update member", data: { disable_with: 'Updating...' } %>
-		<% end %>
-	<% end %>
+      <%= f.submit "Update member", data: { disable_with: 'Updating...' } %>
+    <% end %>
+  <% end %>
 <% end %>
 
 Add a member?
 
 <%= form_for(@member, url: artist_members_path) do |f| %>
-	<%= render 'errors/profile_errors' %>
+  <%= render 'errors/profile_errors' %>
 
-	<div class="field">
-  	<%= f.label :name %><br />
-  	<%= f.text_field :name %>
-	</div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
 
-	<%= f.submit "Add member", data: { disable_with: 'Updating...' } %>
+  <%= f.submit "Add member", data: { disable_with: 'Updating...' } %>
 <% end %>
 
 
