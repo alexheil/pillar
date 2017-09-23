@@ -6,6 +6,10 @@ class Artists::ProfilesController < ApplicationController
 
 	def edit
 		@profile = @artist.artist_profile
+		@theme = @artist.artist_theme
+		@location = @artist.artist_location
+		@genre = @artist.artist_genre
+		@member = ArtistMember.new
 	end
 
 	def update

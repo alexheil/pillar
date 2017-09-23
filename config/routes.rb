@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     resource :genre, controller: 'artists/genres', only: [:edit, :update]
     resource :location, controller: 'artists/locations', only: [:edit, :update]
     resource :theme, controller: 'artists/themes', only: [:edit, :update]
-    resources :members, 'artists/members', only: [:create, :update]
+    resources :members, controller: 'artists/members', only: [:create, :update]
   end
 
 end

@@ -4,18 +4,6 @@ Welcome to Pillar!
 <%= link_to "Sign In", sign_in_path %>
 
 <% if artist_signed_in? %>
-	<%= current_artist.username %> is signed in.
-	<% if current_artist.artist_profile.email.blank? %>
-	you have profile
-	<% end %>
-	<% if current_artist.artist_genre.genre.blank? %>
-	you have genre
-	<% end %>
-	<% if current_artist.artist_location.city.blank? %>
-	you have location
-	<% end %>
-	<% if current_artist.artist_theme.main_color.blank? %>
-	you have theme
-	<% end %>
+	<%= link_to current_artist.username, artist_path(current_artist) %> is signed in.
 	<%= link_to "Sign Out", sign_out_path %>
 <% end %>
