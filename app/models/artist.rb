@@ -18,7 +18,7 @@ class Artist < ApplicationRecord
   has_many :artist_members
   has_many :photos
   has_many :videos
-  has_many :posts
+  has_many :artist_posts
 
   before_save :should_generate_new_friendly_id?, if: :username_changed?
   before_save :downcase_username

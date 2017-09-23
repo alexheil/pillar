@@ -4,6 +4,6 @@ Welcome to Pillar!
 <%= link_to "Sign In", sign_in_path %>
 
 <% if artist_signed_in? %>
-	<%= link_to current_artist.username, artist_path(current_artist) %> is signed in.
-	<%= link_to "Sign Out", sign_out_path %>
+  <%= link_to current_artist.username, artist_path(current_artist) %> is signed in.
+  <%= link_to "Sign Out", sign_out_path %>
 <% end %>

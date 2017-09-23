@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resource :location, controller: 'artists/locations', only: [:edit, :update]
     resource :theme, controller: 'artists/themes', only: [:edit, :update]
     resources :members, controller: 'artists/members', only: [:create, :update]
+    resources :posts, controller: 'artists/posts', only: [:show, :create, :destroy]
   end
 
 end

@@ -21,6 +21,24 @@ your main color is <%= current_artist.artist_theme.main_color %>
 <% end %>
 </br>
 <% @artist.artist_members.each do |member| %>
-	<%= member.name %>
+  <%= member.name %>
 <% end %></br>
 <%= link_to "Edit profile", edit_artist_profile_path(current_artist) %>
+
+</br>
+
+<%= form_for(@post, url: artist_posts_path(@artist)) do |f| %>
+
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.text_field :content %>
+  </div>
+
+  <%= f.submit "Create post", data: { disable_with: 'Updating...' } %>
+<% end %>
+
+<% if @artist.artist_posts.any? %>
+  <% @artist.artist_posts.each do |post| %>
+    <%= post.content %>
+  <% end %>
+<% end %>
