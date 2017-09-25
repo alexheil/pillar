@@ -10,7 +10,7 @@
 <% end %>
 
 <%= form_for(@theme, url: artist_theme_path) do |f| %>
-  <%= render 'errors/profile_errors' %>
+  <%= render 'errors/theme_errors' %>
 
   <div class="field">
     <%= f.label :main_color %><br />
@@ -21,7 +21,7 @@
 <% end %>
 
 <%= form_for(@location, url: artist_location_path) do |f| %>
-  <%= render 'errors/profile_errors' %>
+  <%= render 'errors/location_errors' %>
 
   <div class="field">
     <%= f.label :city %><br />
@@ -32,7 +32,7 @@
 <% end %>
 
 <%= form_for(@genre, url: artist_genre_path) do |f| %>
-  <%= render 'errors/profile_errors' %>
+  <%= render 'errors/genre_errors' %>
 
   <div class="field">
     <%= f.label :genre %><br />
@@ -60,7 +60,7 @@
 Add a member?
 
 <%= form_for(@member, url: artist_members_path) do |f| %>
-  <%= render 'errors/profile_errors' %>
+  <%= render 'errors/member_errors' %>
 
   <div class="field">
     <%= f.label :name %><br />
