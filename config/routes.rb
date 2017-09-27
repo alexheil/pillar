@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :artists, controller: 'artists/artists', only: [:show, :index] do
-  	resources :relationships, controller: 'artists/relationships', only: [:create, :destroy]
+  	resources :relationships, controller: 'artists/relationships', only: [:create, :update, :destroy]
     resource :profile, controller: 'artists/profiles', only: [:edit, :update]
     resource :genre, controller: 'artists/genres', only: [:edit, :update]
     resource :location, controller: 'artists/locations', only: [:edit, :update]

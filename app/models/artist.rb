@@ -11,20 +11,20 @@ class Artist < ApplicationRecord
   validates :username, presence: true, uniqueness: true, length: { maximum: 50 }, format: { with: /\A[a-zA-Z0-9 ]+\Z/i }, :case_sensitive => false
   validate :validate_username
 
-  has_one :artist_profile
-  has_one :artist_genre
-  has_one :artist_location
-  has_one :artist_theme
-  has_many :artist_members
-  #has_many :artist_photos
-  #has_many :artist_videos
-  has_many :artist_posts
-  #has_many :artist_tours
-  #has_many :artist_shows
-  #has_one :artist_store
-  #has_many :artist_items
-  #has_many :artist_albums
-  #has_many :artist_tracks
+  has_one :artist_profile, dependent: :destroy
+  has_one :artist_genre, dependent: :destroy
+  has_one :artist_location, dependent: :destroy
+  has_one :artist_theme, dependent: :destroy
+  has_many :artist_members, dependent: :destroy
+  #has_many :artist_photos, dependent: :destroy
+  #has_many :artist_videos, dependent: :destroy
+  has_many :artist_posts, dependent: :destroy
+  #has_many :artist_tours, dependent: :destroy
+  #has_many :artist_shows, dependent: :destroy
+  #has_one :artist_store, dependent: :destroy
+  #has_many :artist_items, dependent: :destroy
+  #has_many :artist_albums, dependent: :destroy
+  #has_many :artist_tracks, dependent: :destroy
 
   has_many :artist_relationships, dependent: :destroy
   has_many :fans, through: :artist_relationships
