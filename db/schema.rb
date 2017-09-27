@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170923153838) do
+ActiveRecord::Schema.define(version: 20170926222353) do
 
   create_table "artist_genres", force: :cascade do |t|
     t.integer  "artist_id"
@@ -78,6 +78,22 @@ ActiveRecord::Schema.define(version: 20170923153838) do
     t.index ["artist_id"], name: "index_artist_profiles_on_artist_id"
   end
 
+  create_table "artist_relationships", force: :cascade do |t|
+    t.integer  "artist_id"
+    t.integer  "fan_id"
+    t.boolean  "post_email",  default: true
+    t.boolean  "photo_email", default: true
+    t.boolean  "video_email", default: true
+    t.boolean  "merch_email", default: true
+    t.boolean  "tour_email",  default: true
+    t.boolean  "show_email",  default: true
+    t.boolean  "album_email", default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["artist_id"], name: "index_artist_relationships_on_artist_id"
+    t.index ["fan_id"], name: "index_artist_relationships_on_fan_id"
+  end
+
   create_table "artist_themes", force: :cascade do |t|
     t.integer  "artist_id"
     t.string   "main_color",       default: ""
@@ -120,6 +136,76 @@ ActiveRecord::Schema.define(version: 20170923153838) do
     t.index ["slug"], name: "index_artists_on_slug", unique: true
     t.index ["unlock_token"], name: "index_artists_on_unlock_token", unique: true
     t.index ["username"], name: "index_artists_on_username", unique: true
+  end
+
+  create_table "fan_locations", force: :cascade do |t|
+    t.integer  "fan_id"
+    t.string   "city",       default: ""
+    t.string   "state",      default: ""
+    t.string   "country",    default: ""
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["fan_id"], name: "index_fan_locations_on_fan_id"
+  end
+
+  create_table "fan_profiles", force: :cascade do |t|
+    t.integer  "fan_id"
+    t.text     "biography",        default: ""
+    t.string   "website_url",      default: ""
+    t.string   "facebook_handle",  default: ""
+    t.string   "facebook_url",     default: ""
+    t.string   "twitter_handle",   default: ""
+    t.string   "twitter_url",      default: ""
+    t.string   "instagram_handle", default: ""
+    t.string   "instagram_url",    default: ""
+    t.string   "youtube_handle",   default: ""
+    t.string   "youtube_url",      default: ""
+    t.string   "letlyrics_url",    default: ""
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["fan_id"], name: "index_fan_profiles_on_fan_id"
+  end
+
+  create_table "fan_themes", force: :cascade do |t|
+    t.integer  "fan_id"
+    t.string   "main_color",       default: ""
+    t.string   "text_color",       default: ""
+    t.string   "background_color", default: ""
+    t.string   "link_color",       default: ""
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["fan_id"], name: "index_fan_themes_on_fan_id"
+  end
+
+  create_table "fans", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "username",               default: "", null: false
+    t.string   "slug",                   default: "", null: false
+    t.string   "name",                   default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.integer  "failed_attempts",        default: 0,  null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["confirmation_token"], name: "index_fans_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_fans_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_fans_on_reset_password_token", unique: true
+    t.index ["slug"], name: "index_fans_on_slug", unique: true
+    t.index ["unlock_token"], name: "index_fans_on_unlock_token", unique: true
+    t.index ["username"], name: "index_fans_on_username", unique: true
   end
 
 end

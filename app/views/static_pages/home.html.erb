@@ -7,3 +7,8 @@ Welcome to Pillar!
   <%= link_to current_artist.username, artist_path(current_artist) %> is signed in.
   <%= link_to "Sign Out", sign_out_path %>
 <% end %>
+
+<% if fan_signed_in? %>
+  <%= link_to current_fan.username, fan_path(current_fan) %> is signed in.
+  <%= link_to "Sign Out", sign_out_path %>
+<% end %>

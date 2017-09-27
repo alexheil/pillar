@@ -1,0 +1,18 @@
+<%= current_fan.username %> is signed in.
+<% if current_fan.fan_profile.letlyrics_url.blank? %>
+you have profile
+<% else %>
+your letlyrics_url is <%= current_fan.fan_profile.letlyrics_url %>
+<% end %>
+<% if current_fan.fan_location.city.blank? %>
+you have location
+<% else %>
+your city is <%= current_fan.fan_location.city %>
+<% end %>
+<% if current_fan.fan_theme.main_color.blank? %>
+you have theme
+<% else %>
+your main color is <%= current_fan.fan_theme.main_color %>
+<% end %></br>
+
+<%= link_to "Edit profile", edit_fan_profile_path(current_fan) %>

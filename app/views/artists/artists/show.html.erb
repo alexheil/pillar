@@ -1,29 +1,53 @@
-<%= current_artist.username %> is signed in.
-<% if current_artist.artist_profile.year_founded.blank? %>
-you have profile
-<% else %>
-your year founded is <%= current_artist.artist_profile.year_founded %>
+<%= @artist.username %> is signed in.
+
+<% if artist_signed_in? %>
+  <% if current_artist.artist_profile.year_founded.blank? %>
+  you have profile
+  <% else %>
+  your year founded is <%= current_artist.artist_profile.year_founded %>
+  <% end %>
+  <% if current_artist.artist_genre.genre.blank? %>
+  you have genre
+  <% else %>
+  your genre is <%= current_artist.artist_genre.genre %>
+  <% end %>
+  <% if current_artist.artist_location.city.blank? %>
+  you have location
+  <% else %>
+  your city is <%= current_artist.artist_location.city %>
+  <% end %>
+  <% if current_artist.artist_theme.main_color.blank? %>
+  you have theme
+  <% else %>
+  your main color is <%= current_artist.artist_theme.main_color %>
+  <% end %>
+  </br>
+  <% @artist.artist_members.each do |member| %>
+    <%= member.name %>
+  <% end %></br>
+  <%= link_to "Edit profile", edit_artist_profile_path(current_artist) %>
 <% end %>
-<% if current_artist.artist_genre.genre.blank? %>
-you have genre
-<% else %>
-your genre is <%= current_artist.artist_genre.genre %>
-<% end %>
-<% if current_artist.artist_location.city.blank? %>
-you have location
-<% else %>
-your city is <%= current_artist.artist_location.city %>
-<% end %>
-<% if current_artist.artist_theme.main_color.blank? %>
-you have theme
-<% else %>
-your main color is <%= current_artist.artist_theme.main_color %>
-<% end %>
+
 </br>
-<% @artist.artist_members.each do |member| %>
-  <%= member.name %>
-<% end %></br>
-<%= link_to "Edit profile", edit_artist_profile_path(current_artist) %>
+
+
+
+
+<% if fan_signed_in? %>
+  <% if fan_signed_in? && current_fan.following_artist?(@artist) %>
+    <%= button_to "Unfollow", artist_relationship_path(@artist, current_fan.artist_relationship_id(@artist)), method: :delete, data: { disable_with: 'Unfollowing...' } %>
+  <% else %>
+    <%= form_for(@relationship,  url: artist_relationships_path(@artist)) do |f| %>
+      <%= f.submit "Follow", data: { disable_with: 'Following...' } %>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= link_to "Sign in as a fan", fan_session_path %> to follow <%= @artist.name %>
+<% end %>
+
+
+
+
 
 </br>
 

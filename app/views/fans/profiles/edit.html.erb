@@ -1,0 +1,32 @@
+<%= form_for(@profile, url: fan_profile_path) do |f| %>
+  <%= render 'errors/profile_errors' %>
+
+  <div class="field">
+    <%= f.label :letlyrics_url %><br />
+    <%= f.text_field :letlyrics_url %>
+  </div>
+
+  <%= f.submit "Update profile", data: { disable_with: 'Updating...' } %>
+<% end %>
+
+<%= form_for(@theme, url: fan_theme_path) do |f| %>
+  <%= render 'errors/theme_errors' %>
+
+  <div class="field">
+    <%= f.label :main_color %><br />
+    <%= f.text_field :main_color %>
+  </div>
+
+  <%= f.submit "Update theme", data: { disable_with: 'Updating...' } %>
+<% end %>
+
+<%= form_for(@location, url: fan_location_path) do |f| %>
+  <%= render 'errors/location_errors' %>
+
+  <div class="field">
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </div>
+
+  <%= f.submit "Update location", data: { disable_with: 'Updating...' } %>
+<% end %>

@@ -1,4 +1,4 @@
-class Artist < ApplicationRecord
+class Fan < ApplicationRecord
   extend FriendlyId
   friendly_id :username, use: :slugged
 
@@ -11,30 +11,19 @@ class Artist < ApplicationRecord
   validates :username, presence: true, uniqueness: true, length: { maximum: 50 }, format: { with: /\A[a-zA-Z0-9 ]+\Z/i }, :case_sensitive => false
   validate :validate_username
 
-  has_one :artist_profile
-  has_one :artist_genre
-  has_one :artist_location
-  has_one :artist_theme
-  has_many :artist_members
-  #has_many :artist_photos
-  #has_many :artist_videos
-  has_many :artist_posts
-  #has_many :artist_tours
-  #has_many :artist_shows
-  #has_one :artist_store
-  #has_many :artist_items
-  #has_many :artist_albums
-  #has_many :artist_tracks
+  has_one :fan_profile
+  has_one :fan_location
+  has_one :fan_theme
 
   has_many :artist_relationships, dependent: :destroy
-  has_many :fans, through: :artist_relationships
-  belongs_to :fan
+  has_many :artists, through: :artist_relationships
+  belongs_to :artist
 
   before_save :should_generate_new_friendly_id?, if: :username_changed?
   before_save :downcase_username
 
   def validate_username
-    if Artist.where(email: username).exists?
+    if Fan.where(email: username).exists?
       errors.add(:username, :invalid)
     end
   end
@@ -46,6 +35,18 @@ class Artist < ApplicationRecord
     elsif conditions.has_key?(:username) || conditions.has_key?(:email)
       where(conditions.to_h).first
     end
+  end
+
+  def following_artist?(artist)
+    ArtistRelationship.exists? fan_id: id, artist_id: artist.id
+  end
+
+  def unfollow_artist(artist)
+    ArtistRelationship.find_by(fan_id: id, artist_id: artist.id).destroy
+  end
+
+  def artist_relationship_id(artist)
+    ArtistRelationship.find_by(fan_id: id, artist_id: artist.id).id
   end
 
   private

@@ -19,12 +19,25 @@ Rails.application.routes.draw do
   end
 
   resources :artists, controller: 'artists/artists', only: [:show, :index] do
+  	resources :relationships, controller: 'artists/relationships', only: [:create, :destroy]
     resource :profile, controller: 'artists/profiles', only: [:edit, :update]
     resource :genre, controller: 'artists/genres', only: [:edit, :update]
     resource :location, controller: 'artists/locations', only: [:edit, :update]
     resource :theme, controller: 'artists/themes', only: [:edit, :update]
     resources :members, controller: 'artists/members', only: [:create, :update]
     resources :posts, controller: 'artists/posts', only: [:show, :create, :destroy]
+  end
+
+  devise_for :fans, controllers: { sessions: "fans/sessions", passwords: "fans/passwords", registrations: "fans/registrations", confirmations: "fans/confirmations",  unlocks: "fans/unlocks"}
+
+  devise_scope :fan do
+    get "sign_out", to: "fans/sessions#destroy"
+  end
+
+  resources :fans, controller: 'fans/fans', only: [:show, :index] do
+    resource :profile, controller: 'fans/profiles', only: [:edit, :update]
+    resource :location, controller: 'fans/locations', only: [:edit, :update]
+		resource :theme, controller: 'fans/themes', only: [:edit, :update]
   end
 
 end

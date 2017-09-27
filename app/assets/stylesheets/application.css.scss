@@ -3,13 +3,13 @@
  *= require_self
  */
 
-$green: #338A2E;
+$green: #5AAC56;
 $green-accent: #8DCF8A;
-$blue: #226764;
+$blue: #41817F;
 $blue-accent: #679B99;
-$orange: #AA6B39;
+$orange: #D4996A;
 $orange-accent: #FFD0AA;
-$red: #A8383B;
+$red: #D3696C;
 $red-accent: #FDA8AA;
 $black: #212121;
 $white: #eeeeee;
@@ -22,8 +22,8 @@ body {
   line-height: 1.75em;
   font-family: $font;
   font-weight: 300;
-  color: $white;
-  background: $black;
+  color: $black;
+  background: $white;
 }
 
 a {

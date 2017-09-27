@@ -1,4 +1,4 @@
-class Artists::RegistrationsController < Devise::RegistrationsController
+class Fans::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -10,10 +10,9 @@ class Artists::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    @artist.create_artist_profile(profile_params)
-    @artist.create_artist_genre(genre_params)
-    @artist.create_artist_location(location_params)
-    @artist.create_artist_theme(theme_params)
+    @fan.create_fan_profile(profile_params)
+    @fan.create_fan_location(location_params)
+    @fan.create_fan_theme(theme_params)
   end
 
   # GET /resource/edit
@@ -43,11 +42,7 @@ class Artists::RegistrationsController < Devise::RegistrationsController
   private
 
     def profile_params
-      params.permit(:biography, :year_founded, :email, :website_url, :facebook_handle, :facebook_url, :twitter_handle, :twitter_url, :instagram_handle, :instagram_url, :youtube_handle, :youtube_url, :letlyrics_url, :record_label, :influences, :general_manager_name, :general_manager_email, :press_contact_name, :press_contact_email, :booking_agent_name, :booking_agent_email)
-    end
-
-    def genre_params
-      params.permit(:genre, :subgenre)
+      params.permit(:biography, :website_url, :facebook_handle, :facebook_url, :twitter_handle, :twitter_url, :instagram_handle, :instagram_url, :youtube_handle, :youtube_url, :letlyrics_url, :location)
     end
 
     def location_params
