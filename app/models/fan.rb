@@ -36,7 +36,7 @@ class Fan < ApplicationRecord
       where(conditions.to_h).first
     end
   end
-
+  
   def following_artist?(artist)
     ArtistRelationship.exists? fan_id: id, artist_id: artist.id
   end

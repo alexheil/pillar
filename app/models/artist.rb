@@ -48,6 +48,48 @@ class Artist < ApplicationRecord
     end
   end
 
+  def fan_post_email
+    artist_relationships.includes(:fan).where(post_email: true).find_each do |relationship|
+      FanMailer.post_email(relationship.fan).deliver_now
+    end
+  end
+
+  def fan_photo_email
+    artist_relationships.includes(:fan).where(photo_email: true).find_each do |relationship|
+      FanMailer.photo_email(relationship.fan).deliver_now
+    end
+  end
+
+  def fan_video_email
+    artist_relationships.includes(:fan).where(video_email: true).find_each do |relationship|
+      FanMailer.video_email(relationship.fan).deliver_now
+    end
+  end
+
+  def fan_merch_email
+    artist_relationships.includes(:fan).where(merch_email: true).find_each do |relationship|
+      FanMailer.merch_email(relationship.fan).deliver_now
+    end
+  end
+
+  def fan_tour_email
+    artist_relationships.includes(:fan).where(tour_email: true).find_each do |relationship|
+      FanMailer.tour_email(relationship.fan).deliver_now
+    end
+  end
+
+  def fan_show_email
+    artist_relationships.includes(:fan).where(show_email: true).find_each do |relationship|
+      FanMailer.show_email(relationship.fan).deliver_now
+    end
+  end
+
+  def fan_album_email
+    artist_relationships.includes(:fan).where(album_email: true).find_each do |relationship|
+      FanMailer.album_email(relationship.fan).deliver_now
+    end
+  end
+
   private
 
     def should_generate_new_friendly_id?
