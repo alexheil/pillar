@@ -76,6 +76,6 @@
 
 <% if @artist.artist_posts.any? %>
   <% @artist.artist_posts.each do |post| %>
-    <%= post.content %> <%= link_to "Delete", artist_post_path(@artist, post), method: :delete, data: { disable_with: 'Deleteing...' } %>
+    <%= post.content %> <%= link_to "Delete", artist_post_path(@artist, post), method: :delete, data: { disable_with: 'Deleting...' } %>
   <% end %>
 <% end %>
