@@ -4,6 +4,7 @@ class CreateArtistPosts < ActiveRecord::Migration[5.0]
     	t.references :artist
     	t.text :content
     	t.string :link, default: ""
+    	t.string :image, default: ""
 
       t.timestamps
     end

@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20170926222353) do
     t.integer  "artist_id"
     t.text     "content"
     t.string   "link",       default: ""
+    t.string   "image",      default: ""
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.index ["artist_id"], name: "index_artist_posts_on_artist_id"

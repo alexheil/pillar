@@ -45,7 +45,7 @@ class Artists::PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:artist_post).permit(:content, :link)
+      params.require(:artist_post).permit(:content, :link, :image)
     end
 
 end
