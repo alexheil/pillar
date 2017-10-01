@@ -16,7 +16,7 @@ class Artist < ApplicationRecord
   has_one :artist_location, dependent: :destroy
   has_one :artist_theme, dependent: :destroy
   has_many :artist_members, dependent: :destroy
-  #has_many :artist_photos, dependent: :destroy
+  has_many :artist_photos, dependent: :destroy
   #has_many :artist_videos, dependent: :destroy
   has_many :artist_posts, dependent: :destroy
   #has_many :artist_tours, dependent: :destroy
