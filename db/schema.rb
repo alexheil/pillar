@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170926171630) do
+ActiveRecord::Schema.define(version: 20171002174641) do
 
   create_table "artist_genres", force: :cascade do |t|
     t.integer  "artist_id"
@@ -39,6 +39,28 @@ ActiveRecord::Schema.define(version: 20170926171630) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["artist_id"], name: "index_artist_members_on_artist_id"
+  end
+
+  create_table "artist_photo_albums", force: :cascade do |t|
+    t.integer  "artist_id"
+    t.string   "title"
+    t.string   "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_artist_photo_albums_on_artist_id"
+  end
+
+  create_table "artist_photos", force: :cascade do |t|
+    t.integer  "artist_id"
+    t.string   "title",         default: ""
+    t.string   "photo"
+    t.text     "description",   default: ""
+    t.boolean  "cover_photo",   default: false
+    t.boolean  "profile_photo", default: false
+    t.string   "slug"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["artist_id"], name: "index_artist_photos_on_artist_id"
   end
 
   create_table "artist_posts", force: :cascade do |t|
@@ -77,6 +99,22 @@ ActiveRecord::Schema.define(version: 20170926171630) do
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.index ["artist_id"], name: "index_artist_profiles_on_artist_id"
+  end
+
+  create_table "artist_relationships", force: :cascade do |t|
+    t.integer  "artist_id"
+    t.integer  "fan_id"
+    t.boolean  "post_email",  default: true
+    t.boolean  "photo_email", default: true
+    t.boolean  "video_email", default: true
+    t.boolean  "merch_email", default: true
+    t.boolean  "tour_email",  default: true
+    t.boolean  "show_email",  default: true
+    t.boolean  "album_email", default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["artist_id"], name: "index_artist_relationships_on_artist_id"
+    t.index ["fan_id"], name: "index_artist_relationships_on_fan_id"
   end
 
   create_table "artist_themes", force: :cascade do |t|

@@ -7,6 +7,8 @@ class Artists::ArtistsController < ApplicationController
     if fan_signed_in? && current_fan.following_artist?(@artist)
       @settings = ArtistRelationship.find(current_fan.artist_relationship_id(@artist))
     end
+    @photo_album = ArtistPhotoAlbum.new
+    @photo = ArtistPhoto.new
   end
   
 end
