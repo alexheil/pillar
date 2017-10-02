@@ -1,0 +1,2 @@
+class ArtistPhotoAlbum < ApplicationRecord
+end

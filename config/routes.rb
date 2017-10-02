@@ -26,6 +26,9 @@ Rails.application.routes.draw do
     resource :theme, controller: 'artists/themes', only: [:edit, :update]
     resources :members, controller: 'artists/members', only: [:create, :update]
     resources :posts, controller: 'artists/posts', only: [:show, :create, :destroy]
+    resources :photo_albums, controller: 'artists/photo_albums', except: :index do
+    	resources :photos, controller: 'artists/photos', except: :index
+    end
   end
 
   devise_for :fans, controllers: { sessions: "fans/sessions", passwords: "fans/passwords", registrations: "fans/registrations", confirmations: "fans/confirmations",  unlocks: "fans/unlocks"}
