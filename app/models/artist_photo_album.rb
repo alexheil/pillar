@@ -5,7 +5,7 @@ class ArtistPhotoAlbum < ApplicationRecord
 	belongs_to :artist
 	has_many :artist_photos, dependent: :destroy
 
-	before_save :should_generate_new_friendly_id?, if: :username_changed?
+	before_save :should_generate_new_friendly_id?, if: :title_changed?
 
 	private
 

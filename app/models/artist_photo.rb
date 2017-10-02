@@ -5,7 +5,7 @@ class ArtistPhoto < ApplicationRecord
 	belongs_to :artist
 	belongs_to :artist_photo_albums
 
-	before_save :should_generate_new_friendly_id?, if: :username_changed?
+	before_save :should_generate_new_friendly_id?, if: :title_changed?
 
 	private
 

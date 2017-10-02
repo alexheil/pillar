@@ -52,15 +52,17 @@ ActiveRecord::Schema.define(version: 20171002174641) do
 
   create_table "artist_photos", force: :cascade do |t|
     t.integer  "artist_id"
-    t.string   "title",         default: ""
+    t.integer  "artist_photo_album_id"
+    t.string   "title",                 default: ""
     t.string   "photo"
-    t.text     "description",   default: ""
-    t.boolean  "cover_photo",   default: false
-    t.boolean  "profile_photo", default: false
+    t.text     "description",           default: ""
+    t.boolean  "cover_photo",           default: false
+    t.boolean  "profile_photo",         default: false
     t.string   "slug"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.index ["artist_id"], name: "index_artist_photos_on_artist_id"
+    t.index ["artist_photo_album_id"], name: "index_artist_photos_on_artist_photo_album_id"
   end
 
   create_table "artist_posts", force: :cascade do |t|

@@ -2,7 +2,7 @@ class Artists::PhotoAlbumsController < ApplicationController
 
   before_action :authenticate_artist!, except: :show
   before_action :correct_artist, only: :create
-  before_action :correct_post_artist, only: :destroy
+  before_action :correct_photo_album_artist, only: :destroy
   before_action :set_artist, except: :show
 
   def show
@@ -29,7 +29,7 @@ class Artists::PhotoAlbumsController < ApplicationController
   end
 
   def destroy
-    ArtistPhotoAlbum.find(params[:id]).destroy
+    ArtistPhotoAlbum.friendly.find(params[:id]).destroy
     redirect_to artist_path(@artist)
   end
 
@@ -48,12 +48,12 @@ class Artists::PhotoAlbumsController < ApplicationController
     end
 
     def correct_photo_album_artist
-      @photo_album = ArtistPhotoAlbum.find(params[:id])
+      @photo_album = ArtistPhotoAlbum.friendly.find(params[:id])
       redirect_to artist_path(@photo_album.artist_id) if @photo_album.artist_id != current_artist.id
     end
 
     def photo_album_params
-      params.require(:artist_photo_albums).permit(:title)
+      params.require(:artist_photo_album).permit(:title)
     end
 
 end

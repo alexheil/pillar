@@ -70,12 +70,51 @@
       <%= f.text_field :content %>
     </div>
 
-    <%= f.submit "Create post", data: { disable_with: 'Updating...' } %>
+    <%= f.submit "Create post", data: { disable_with: 'Creating...' } %>
   <% end %>
 <% end %>
 
 <% if @artist.artist_posts.any? %>
   <% @artist.artist_posts.each do |post| %>
     <%= post.content %> <%= link_to "Delete", artist_post_path(@artist, post), method: :delete, data: { disable_with: 'Deleting...' } %>
+  <% end %>
+<% end %>
+
+
+
+
+</br>
+<% if artist_signed_in? && current_artist == @artist %>
+  <%= form_for(@photo_album, url: artist_photo_albums_path(@artist)) do |f| %>
+
+    <div class="field">
+      <%= f.label :title %><br />
+      <%= f.text_field :title %>
+    </div>
+
+    <%= f.submit "Create photo album", data: { disable_with: 'Creating...' } %>
+  <% end %>
+<% end %>
+
+<% if @artist.artist_photo_albums.any? %>
+  <% @artist.artist_photo_albums.each do |photo_album| %>
+    <%= photo_album.title %> <%= link_to "Delete", artist_photo_album_path(@artist, photo_album), method: :delete, data: { disable_with: 'Deleting...' } %>
+
+    <%= form_for(@photo, url: artist_photo_album_photos_path(@artist, photo_album)) do |f| %>
+
+    <div class="field">
+      <%= f.label :title %><br />
+      <%= f.text_field :title %>
+    </div>
+
+    <%= f.submit "Create photo", data: { disable_with: 'Creating...' } %>
+  <% end %>
+
+  <% if photo_album.artist_photos.any? %>
+    <% photo_album.artist_photos.each do |photo| %>
+    <%= photo.title %> <%= photo.artist_id %> <%= link_to "Delete", artist_photo_album_photo_path(@artist, photo_album, photo), method: :delete, data: { disable_with: 'Deleting...' } %>
+    <% end %>
+  <% end %>
+
   <% end %>
 <% end %>
