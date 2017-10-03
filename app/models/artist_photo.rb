@@ -2,6 +2,8 @@ class ArtistPhoto < ApplicationRecord
 	extend FriendlyId
   friendly_id :title, use: :slugged
 
+  mount_uploader :photo, ArtistPhotoUploader
+
 	belongs_to :artist
 	belongs_to :artist_photo_albums
 

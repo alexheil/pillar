@@ -107,12 +107,21 @@
       <%= f.text_field :title %>
     </div>
 
+    <div class="field">
+      <%= f.label :photo %><br />
+      <%= f.file_field :photo %>
+    </div>
+
     <%= f.submit "Create photo", data: { disable_with: 'Creating...' } %>
   <% end %>
 
   <% if photo_album.artist_photos.any? %>
     <% photo_album.artist_photos.each do |photo| %>
-    <%= photo.title %> <%= photo.artist_id %> <%= link_to "Delete", artist_photo_album_photo_path(@artist, photo_album, photo), method: :delete, data: { disable_with: 'Deleting...' } %>
+    <%= photo.title %> <%= photo.artist_id %>
+
+    <%= image_tag(photo.photo_url.to_s) %>
+
+    <%= link_to "Delete", artist_photo_album_photo_path(@artist, photo_album, photo), method: :delete, data: { disable_with: 'Deleting...' } %>
     <% end %>
   <% end %>
 
