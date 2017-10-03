@@ -127,3 +127,23 @@
 
   <% end %>
 <% end %>
+
+</br>
+<% if artist_signed_in? && current_artist == @artist %>
+  <%= form_for(@video, url: artist_video_path(@artist)) do |f| %>
+
+    <div class="field">
+      <%= f.label :title %><br />
+      <%= f.text_field :title %>
+    </div>
+
+    <%= f.submit "Create video", data: { disable_with: 'Creating...' } %>
+  <% end %>
+<% end %>
+
+<% if @artist.artist_videos.any? %>
+  <% @artist.artist_videos.each do |video| %>
+    <%= video.title %> <%= link_to "Delete", artist_video_path(@artist, video), method: :delete, data: { disable_with: 'Deleting...' } %>
+
+  <% end %>
+<% end %>

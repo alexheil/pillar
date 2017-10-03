@@ -9,6 +9,7 @@ class Artists::ArtistsController < ApplicationController
     end
     @photo_album = ArtistPhotoAlbum.new
     @photo = ArtistPhoto.new
+    @video = ArtistVideo.new
   end
   
 end
