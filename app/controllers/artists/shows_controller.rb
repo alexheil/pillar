@@ -1,24 +1,24 @@
-class Artists::PhotosController < ApplicationController
+class Artists::ShowsController < ApplicationController
 
   before_action :authenticate_artist!, except: :show
   before_action :correct_artist, only: :create
   before_action :correct_photo_artist, only: :destroy
   before_action :set_artist, except: :show
 
-  def show
+	def show
   end
 
   def new
   end
 
   def create
-    @photo_album = ArtistPhotoAlbum.friendly.find(params[:photo_album_id])
-    @photo = @photo_album.artist_photos.build(photo_params)
-    @photo.artist_id = @artist.id
-    if @photo.save
+    @tour = ArtistTour.friendly.find(params[:tour_id])
+    @show = @tour.artist_shows.build(show_params)
+    @show.artist_id = @artist.id
+    if @show.save
       redirect_to artist_path(@artist)
-      flash[:notice] = "You've successfully added a photo!"
-      @artist.fan_photo_email
+      flash[:notice] = "You've successfully added a show!"
+      @artist.fan_show_email
     else
       render 'new'
       flash.now[:alert] = "You've failed!"
@@ -32,7 +32,7 @@ class Artists::PhotosController < ApplicationController
   end
 
   def destroy
-    ArtistPhoto.friendly.find(params[:id]).destroy
+    ArtistShow.friendly.find(params[:id]).destroy
     redirect_to artist_path(@artist)
   end
 
@@ -51,12 +51,11 @@ class Artists::PhotosController < ApplicationController
     end
 
     def correct_photo_artist
-      @photo = ArtistPhoto.friendly.find(params[:id])
-      redirect_to artist_path(@photo.artist_id) if @photo.artist_id != current_artist.id
+      @show = ArtistShow.friendly.find(params[:id])
+      redirect_to artist_path(@show.artist_id) if @show.artist_id != current_artist.id
     end
 
     def photo_params
-      params.require(:artist_photo).permit(:title, :photo, :description, :cover_photo, :profile_photo)
+      params.require(:artist_show).permit(:title, :photo, :description, :cover_photo, :profile_photo)
     end
-
 end

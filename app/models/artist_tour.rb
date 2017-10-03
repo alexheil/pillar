@@ -1,0 +1,2 @@
+class ArtistTour < ApplicationRecord
+end

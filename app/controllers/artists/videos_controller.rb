@@ -16,6 +16,7 @@ class Artists::VideosController < ApplicationController
     if @video.save
       redirect_to artist_path(@artist)
       flash[:notice] = "You've successfully added a video!"
+      @artist.fan_video_email
     else
       render 'new'
       flash.now[:alert] = "you've failed!"
@@ -38,7 +39,7 @@ class Artists::VideosController < ApplicationController
 
   def destroy
     @video = ArtistVideo.friendly.find(params[:id]).destroy
-    redirect_to artist_videos_path(@artist)
+    redirect_to artist_path(@artist)
   end
 
   private

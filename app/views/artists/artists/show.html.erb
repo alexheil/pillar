@@ -130,7 +130,7 @@
 
 </br>
 <% if artist_signed_in? && current_artist == @artist %>
-  <%= form_for(@video, url: artist_video_path(@artist)) do |f| %>
+  <%= form_for(@video, url: artist_videos_path(@artist)) do |f| %>
 
     <div class="field">
       <%= f.label :title %><br />
@@ -143,7 +143,7 @@
 
 <% if @artist.artist_videos.any? %>
   <% @artist.artist_videos.each do |video| %>
-    <%= video.title %> <%= link_to "Delete", artist_video_path(@artist, video), method: :delete, data: { disable_with: 'Deleting...' } %>
+    <%= video.title %> <%= video.artist_id %> <%= link_to "Delete", artist_video_path(@artist, video), method: :delete, data: { disable_with: 'Deleting...' } %>
 
   <% end %>
 <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171002174641) do
+ActiveRecord::Schema.define(version: 20171003192950) do
 
   create_table "artist_genres", force: :cascade do |t|
     t.integer  "artist_id"
@@ -128,6 +128,17 @@ ActiveRecord::Schema.define(version: 20171002174641) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.index ["artist_id"], name: "index_artist_themes_on_artist_id"
+  end
+
+  create_table "artist_videos", force: :cascade do |t|
+    t.integer  "artist_id"
+    t.string   "title"
+    t.text     "description"
+    t.string   "video"
+    t.string   "slug"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["artist_id"], name: "index_artist_videos_on_artist_id"
   end
 
   create_table "artists", force: :cascade do |t|
