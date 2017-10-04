@@ -1,13 +1,13 @@
 class ArtistPhotoAlbum < ApplicationRecord
-	extend FriendlyId
+  extend FriendlyId
   friendly_id :title, use: :slugged
 
-	belongs_to :artist
-	has_many :artist_photos, dependent: :destroy
+  belongs_to :artist
+  has_many :artist_photos, dependent: :destroy
 
-	before_save :should_generate_new_friendly_id?, if: :title_changed?
+  before_save :should_generate_new_friendly_id?, if: :title_changed?
 
-	private
+  private
 
     def should_generate_new_friendly_id?
       title_changed?

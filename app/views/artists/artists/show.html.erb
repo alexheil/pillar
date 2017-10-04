@@ -147,3 +147,44 @@
 
   <% end %>
 <% end %>
+
+
+
+
+</br>
+<% if artist_signed_in? && current_artist == @artist %>
+  <%= form_for(@tour, url: artist_tours_path(@artist)) do |f| %>
+
+    <div class="field">
+      <%= f.label :title %><br />
+      <%= f.text_field :title %>
+    </div>
+
+    <%= f.submit "Create tour", data: { disable_with: 'Creating...' } %>
+  <% end %>
+<% end %>
+
+<% if @artist.artist_tours.any? %>
+  <% @artist.artist_tours.each do |tour| %>
+    <%= tour.title %> <%= link_to "Delete", artist_tour_path(@artist, tour), method: :delete, data: { disable_with: 'Deleting...' } %>
+
+    <%= form_for(@show, url: artist_tour_shows_path(@artist, tour)) do |f| %>
+
+    <div class="field">
+      <%= f.label :title %><br />
+      <%= f.text_field :title %>
+    </div>
+
+    <%= f.submit "Create show", data: { disable_with: 'Creating...' } %>
+  <% end %>
+
+  <% if tour.artist_shows.any? %>
+    <% tour.artist_shows.each do |show| %>
+    <%= show.title %> <%= show.artist_id %>
+
+    <%= link_to "Delete", artist_tour_show_path(@artist, tour, show), method: :delete, data: { disable_with: 'Deleting...' } %>
+    <% end %>
+  <% end %>
+
+  <% end %>
+<% end %>
