@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171003192950) do
+ActiveRecord::Schema.define(version: 20171005183010) do
 
   create_table "artist_genres", force: :cascade do |t|
     t.integer  "artist_id"
@@ -119,6 +119,35 @@ ActiveRecord::Schema.define(version: 20171003192950) do
     t.index ["fan_id"], name: "index_artist_relationships_on_fan_id"
   end
 
+  create_table "artist_show_locations", force: :cascade do |t|
+    t.string   "artist_show"
+    t.string   "city",        default: ""
+    t.string   "state",       default: ""
+    t.string   "country",     default: ""
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "artist_shows", force: :cascade do |t|
+    t.integer  "artist_id"
+    t.integer  "artist_tour_id"
+    t.string   "title"
+    t.integer  "month"
+    t.integer  "day"
+    t.integer  "year"
+    t.string   "venue"
+    t.string   "location"
+    t.text     "description"
+    t.string   "ticket_url"
+    t.string   "image"
+    t.boolean  "is_independent?"
+    t.string   "slug"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["artist_id"], name: "index_artist_shows_on_artist_id"
+    t.index ["artist_tour_id"], name: "index_artist_shows_on_artist_tour_id"
+  end
+
   create_table "artist_themes", force: :cascade do |t|
     t.integer  "artist_id"
     t.string   "main_color",       default: ""
@@ -128,6 +157,19 @@ ActiveRecord::Schema.define(version: 20171003192950) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.index ["artist_id"], name: "index_artist_themes_on_artist_id"
+  end
+
+  create_table "artist_tours", force: :cascade do |t|
+    t.integer  "artist_id"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "amount_of_shows"
+    t.string   "artists"
+    t.string   "image"
+    t.string   "slug"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["artist_id"], name: "index_artist_tours_on_artist_id"
   end
 
   create_table "artist_videos", force: :cascade do |t|

@@ -1,0 +1,2 @@
+class ArtistShowLocation < ApplicationRecord
+end
