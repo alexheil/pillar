@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     resources :videos, controller: 'artists/videos',except: :index
     resources :tours, controller: 'artists/tours', except: :index do
     	resources :shows, controller: 'artists/shows', except: :index do
-    		resource :location, controller: 'ar'
+    		resource :location
     	end
     end
   end
