@@ -8,7 +8,6 @@ class CreateArtistShows < ActiveRecord::Migration[5.0]
       t.integer :day
       t.integer :year
       t.string :venue
-      t.string :location
       t.text :description
       t.string :ticket_url
       t.string :image

@@ -2,7 +2,7 @@ class Artists::ShowsController < ApplicationController
 
   before_action :authenticate_artist!, except: :show
   before_action :correct_artist, only: :create
-  before_action :correct_photo_artist, only: :destroy
+  before_action :correct_show_artist, only: :destroy
   before_action :set_artist, except: :show
 
 	def show
@@ -15,6 +15,7 @@ class Artists::ShowsController < ApplicationController
     @tour = ArtistTour.friendly.find(params[:tour_id])
     @show = @tour.artist_shows.build(show_params)
     @show.artist_id = @artist.id
+    @show.create_artist_show_location(location_params)
     if @show.save
       redirect_to artist_path(@artist)
       flash[:notice] = "You've successfully added a show!"
@@ -50,12 +51,17 @@ class Artists::ShowsController < ApplicationController
       end
     end
 
-    def correct_photo_artist
+    def correct_show_artist
       @show = ArtistShow.friendly.find(params[:id])
       redirect_to artist_path(@show.artist_id) if @show.artist_id != current_artist.id
     end
 
-    def photo_params
-      params.require(:artist_show).permit(:title, :photo, :description, :cover_photo, :profile_photo)
+    def show_params
+      params.require(:artist_show).permit(:title, :month, :day, :year, :venue, :description, :ticket_url, :image, :is_independent?)
     end
+
+    def location_params
+      params.require(:artist_show_location).permit(:city, :state, :country)
+    end
+
 end

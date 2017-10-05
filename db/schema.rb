@@ -120,12 +120,13 @@ ActiveRecord::Schema.define(version: 20171005183010) do
   end
 
   create_table "artist_show_locations", force: :cascade do |t|
-    t.string   "artist_show"
-    t.string   "city",        default: ""
-    t.string   "state",       default: ""
-    t.string   "country",     default: ""
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "artist_show_id"
+    t.string   "city",           default: ""
+    t.string   "state",          default: ""
+    t.string   "country",        default: ""
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["artist_show_id"], name: "index_artist_show_locations_on_artist_show_id"
   end
 
   create_table "artist_shows", force: :cascade do |t|
@@ -136,7 +137,6 @@ ActiveRecord::Schema.define(version: 20171005183010) do
     t.integer  "day"
     t.integer  "year"
     t.string   "venue"
-    t.string   "location"
     t.text     "description"
     t.string   "ticket_url"
     t.string   "image"

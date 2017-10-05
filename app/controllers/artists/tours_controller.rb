@@ -2,7 +2,7 @@ class Artists::ToursController < ApplicationController
 
   before_action :authenticate_artist!, except: :show
   before_action :correct_artist, only: :create
-  before_action :correct_photo_artist, only: :destroy
+  before_action :correct_tour_artist, only: :destroy
   before_action :set_artist, except: :show
 
 	def show
@@ -47,12 +47,12 @@ class Artists::ToursController < ApplicationController
       end
     end
 
-    def correct_photo_artist
+    def correct_tour_artist
       @tour = ArtistTour.friendly.find(params[:id])
       redirect_to artist_path(@tour.artist_id) if @tour.artist_id != current_artist.id
     end
 
-    def photo_params
-      params.require(:artist_tour).permit(:title, :photo, :description, :cover_photo, :profile_photo)
+    def tour_params
+      params.require(:artist_tour).permit(:title, :description, :amount_of_shows, :artists, :image)
     end
 end

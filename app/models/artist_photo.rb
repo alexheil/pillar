@@ -5,7 +5,7 @@ class ArtistPhoto < ApplicationRecord
   mount_uploader :photo, ArtistPhotoUploader
 
   belongs_to :artist
-  belongs_to :artist_photo_albums
+  belongs_to :artist_photo_album
 
   before_save :should_generate_new_friendly_id?, if: :title_changed?
 

@@ -10,6 +10,8 @@ class Artists::ArtistsController < ApplicationController
     @photo_album = ArtistPhotoAlbum.new
     @photo = ArtistPhoto.new
     @video = ArtistVideo.new
+    @tour = ArtistTour.new
+    @show = ArtistShow.new
   end
   
 end
