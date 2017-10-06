@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resource :genre, controller: 'artists/genres', only: [:edit, :update]
     resource :location, controller: 'artists/locations', only: [:edit, :update]
     resource :theme, controller: 'artists/themes', only: [:edit, :update]
+    resource :store, controller: 'artists/store', only: [:edit, :update]
     resources :members, controller: 'artists/members', only: [:create, :update]
     resources :posts, controller: 'artists/posts', only: [:show, :create, :destroy]
     resources :photo_albums, controller: 'artists/photo_albums', except: :index do
@@ -32,7 +33,7 @@ Rails.application.routes.draw do
     resources :videos, controller: 'artists/videos',except: :index
     resources :tours, controller: 'artists/tours', except: :index do
     	resources :shows, controller: 'artists/shows', except: :index do
-    		resource :location
+    		resource :location, controller: 'artists/show_locations', only: [:edit, :update]
     	end
     end
   end

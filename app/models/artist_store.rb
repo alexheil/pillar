@@ -1,0 +1,2 @@
+class ArtistStore < ApplicationRecord
+end

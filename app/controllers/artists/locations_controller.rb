@@ -1,6 +1,6 @@
 class Artists::LocationsController < ApplicationController
 
-before_action :authenticate_artist!
+  before_action :authenticate_artist!
   before_action :correct_artist
   before_action :set_artist
 

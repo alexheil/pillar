@@ -14,6 +14,7 @@ class Artists::RegistrationsController < Devise::RegistrationsController
     @artist.create_artist_genre(genre_params)
     @artist.create_artist_location(location_params)
     @artist.create_artist_theme(theme_params)
+    @artist.create_artist_store(store_params)
   end
 
   # GET /resource/edit
@@ -56,6 +57,10 @@ class Artists::RegistrationsController < Devise::RegistrationsController
 
     def theme_params
       params.permit(:main_color, :text_color, :background_color, :link_color)
+    end
+
+    def store_params
+      params.permit(:stripe_publishable_key, :stripe_secret_key, :stripe_id, :first_name, :last_name, :currency, :country, :month, :day, :year)
     end
 
   # protected
