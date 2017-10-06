@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171005183010) do
+ActiveRecord::Schema.define(version: 20171006174913) do
 
   create_table "artist_genres", force: :cascade do |t|
     t.integer  "artist_id"
@@ -19,6 +19,26 @@ ActiveRecord::Schema.define(version: 20171005183010) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.index ["artist_id"], name: "index_artist_genres_on_artist_id"
+  end
+
+  create_table "artist_items", force: :cascade do |t|
+    t.integer  "artist_id"
+    t.string   "title"
+    t.text     "description"
+    t.string   "category"
+    t.integer  "base_price"
+    t.integer  "shipping_price"
+    t.integer  "total_price"
+    t.string   "currency"
+    t.integer  "quantity"
+    t.string   "options"
+    t.string   "image"
+    t.string   "image_two"
+    t.string   "image_three"
+    t.string   "slug"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["artist_id"], name: "index_artist_items_on_artist_id"
   end
 
   create_table "artist_locations", force: :cascade do |t|
@@ -146,6 +166,26 @@ ActiveRecord::Schema.define(version: 20171005183010) do
     t.datetime "updated_at",      null: false
     t.index ["artist_id"], name: "index_artist_shows_on_artist_id"
     t.index ["artist_tour_id"], name: "index_artist_shows_on_artist_tour_id"
+  end
+
+  create_table "artist_stores", force: :cascade do |t|
+    t.integer  "artist_id"
+    t.string   "stripe_publishable_key"
+    t.string   "stripe_secret_key"
+    t.string   "stripe_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "currency"
+    t.string   "country"
+    t.integer  "month"
+    t.integer  "day"
+    t.integer  "year"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["artist_id"], name: "index_artist_stores_on_artist_id"
+    t.index ["stripe_id"], name: "index_artist_stores_on_stripe_id"
+    t.index ["stripe_publishable_key"], name: "index_artist_stores_on_stripe_publishable_key"
+    t.index ["stripe_secret_key"], name: "index_artist_stores_on_stripe_secret_key"
   end
 
   create_table "artist_themes", force: :cascade do |t|

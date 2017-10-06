@@ -14,6 +14,12 @@ class Artists::ProfilesController < ApplicationController
 
   def update
     @profile = @artist.artist_profile
+    @location = @artist.artist_location
+    @theme = @artist.artist_theme
+    @genre = @artist.artist_genre
+    @location.update_attributes(location_params)
+    @theme.update_attributes(theme_params)
+    @genre.update_attributes(genre_params)
     if @profile.update_attributes(profile_params)
       flash[:notice] = "You've successfully updated your profile!"
       redirect_to current_artist
@@ -39,6 +45,18 @@ class Artists::ProfilesController < ApplicationController
 
     def profile_params
       params.require(:artist_profile).permit(:biography, :year_founded, :email, :website_url, :facebook_handle, :facebook_url, :twitter_handle, :twitter_url, :instagram_handle, :instagram_url, :youtube_handle, :youtube_url, :letlyrics_url, :record_label, :influences, :general_manager_name, :general_manager_email, :press_contact_name, :press_contact_email, :booking_agent_name, :booking_agent_email)
+    end
+
+    def location_params
+      params.require(:artist_location).permit(:city, :state, :year)
+    end
+
+    def genre_params
+      params.require(:artist_genre).permit(:genre, :subgenre)
+    end
+
+    def theme_params
+      params.require(:artist_theme).permit(:main_color, :text_color, :background_color, :link_color)
     end
 
 end

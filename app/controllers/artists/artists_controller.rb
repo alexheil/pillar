@@ -12,6 +12,7 @@ class Artists::ArtistsController < ApplicationController
     @video = ArtistVideo.new
     @tour = ArtistTour.new
     @show = ArtistShow.new
+    @item = ArtistItem.new
   end
   
 end

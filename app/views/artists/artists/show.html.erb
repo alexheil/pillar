@@ -22,6 +22,12 @@
   your main color is <%= current_artist.artist_theme.main_color %>
   <% end %>
   </br>
+  <% if current_artist.artist_store.first_name.blank? %>
+  you have store
+  <% else %>
+  your store is <%= current_artist.artist_store.first_name %>
+  <% end %>
+  </br>
   <% @artist.artist_members.each do |member| %>
     <%= member.name %>
   <% end %></br>
@@ -192,6 +198,29 @@
     <%= link_to "Delete", artist_tour_show_path(@artist, tour, show), method: :delete, data: { disable_with: 'Deleting...' } %>
     <% end %>
   <% end %>
+
+  <% end %>
+<% end %>
+
+
+
+
+</br>
+<% if artist_signed_in? && current_artist == @artist %>
+  <%= form_for(@item, url: artist_items_path(@artist)) do |f| %>
+
+    <div class="field">
+      <%= f.label :title %><br />
+      <%= f.text_field :title %>
+    </div>
+
+    <%= f.submit "Create item", data: { disable_with: 'Creating...' } %>
+  <% end %>
+<% end %>
+
+<% if @artist.artist_items.any? %>
+  <% @artist.artist_items.each do |item| %>
+    <%= item.title %> <%= item.artist_id %> <%= link_to "Delete", artist_item_path(@artist, item), method: :delete, data: { disable_with: 'Deleting...' } %>
 
   <% end %>
 <% end %>

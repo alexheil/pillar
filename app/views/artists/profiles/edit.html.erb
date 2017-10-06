@@ -6,40 +6,28 @@
     <%= f.text_field :year_founded %>
   </div>
 
+  <%= fields_for :artist_location, @location do |u| %>
+    <div class="field">
+      <%= u.label :city %><br />
+      <%= u.text_field :city %>
+    </div>
+  <% end %>
+
+    <%= fields_for :artist_theme, @theme do |u| %>
+    <div class="field">
+      <%= u.label :main_color %><br />
+      <%= u.text_field :main_color %>
+    </div>
+  <% end %>
+
+    <%= fields_for :artist_genre, @genre do |u| %>
+    <div class="field">
+      <%= u.label :genre %><br />
+      <%= u.text_field :genre %>
+    </div>
+  <% end %>
+
   <%= f.submit "Update profile", data: { disable_with: 'Updating...' } %>
-<% end %>
-
-<%= form_for(@theme, url: artist_theme_path) do |f| %>
-  <%= render 'errors/theme_errors' %>
-
-  <div class="field">
-    <%= f.label :main_color %><br />
-    <%= f.text_field :main_color %>
-  </div>
-
-  <%= f.submit "Update theme", data: { disable_with: 'Updating...' } %>
-<% end %>
-
-<%= form_for(@location, url: artist_location_path) do |f| %>
-  <%= render 'errors/location_errors' %>
-
-  <div class="field">
-    <%= f.label :city %><br />
-    <%= f.text_field :city %>
-  </div>
-
-  <%= f.submit "Update location", data: { disable_with: 'Updating...' } %>
-<% end %>
-
-<%= form_for(@genre, url: artist_genre_path) do |f| %>
-  <%= render 'errors/genre_errors' %>
-
-  <div class="field">
-    <%= f.label :genre %><br />
-    <%= f.text_field :genre %>
-  </div>
-
-  <%= f.submit "Update genre", data: { disable_with: 'Updating...' } %>
 <% end %>
 
 <% if @artist.artist_members.any? %>

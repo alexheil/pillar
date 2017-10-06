@@ -30,12 +30,13 @@ Rails.application.routes.draw do
     resources :photo_albums, controller: 'artists/photo_albums', except: :index do
     	resources :photos, controller: 'artists/photos', except: :index
     end
-    resources :videos, controller: 'artists/videos',except: :index
+    resources :videos, controller: 'artists/videos', except: :index
     resources :tours, controller: 'artists/tours', except: :index do
     	resources :shows, controller: 'artists/shows', except: :index do
     		resource :location, controller: 'artists/show_locations', only: [:edit, :update]
     	end
     end
+    resources :items, controller: 'artists/items', except: :index
   end
 
   devise_for :fans, controllers: { sessions: "fans/sessions", passwords: "fans/passwords", registrations: "fans/registrations", confirmations: "fans/confirmations",  unlocks: "fans/unlocks"}
