@@ -224,3 +224,34 @@
 
   <% end %>
 <% end %>
+
+
+
+
+
+</br>
+<% if artist_signed_in? && current_artist == @artist %>
+  <%= form_for(@album, url: artist_albums_path(@artist)) do |f| %>
+
+    <div class="field">
+      <%= f.label :title %><br />
+      <%= f.text_field :title %>
+    </div>
+
+    <%= f.submit "Create album", data: { disable_with: 'Creating...' } %>
+  <% end %>
+<% end %>
+
+<% if @artist.artist_albums.any? %>
+  <% @artist.artist_albums.each do |album| %>
+    <%= album.title %> <%= link_to "Delete", artist_album_path(@artist, album), method: :delete, data: { disable_with: 'Deleting...' } %>
+
+    <%= form_for(@track, url: artist_album_tracks_path(@artist, album)) do |f| %>
+
+    <div class="field">
+      <%= f.label :title %><br />
+      <%= f.text_field :title %>
+    </div>
+
+    <%= f.submit "Create track", data: { disable_with: 'Creating...' } %>
+  <% end %>

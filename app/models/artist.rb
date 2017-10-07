@@ -24,8 +24,8 @@ class Artist < ApplicationRecord
   has_many :artist_shows, dependent: :destroy
   has_one :artist_store, dependent: :destroy
   has_many :artist_items, dependent: :destroy
-  #has_many :artist_albums, dependent: :destroy
-  #has_many :artist_tracks, dependent: :destroy
+  has_many :artist_albums, dependent: :destroy
+  has_many :artist_tracks, dependent: :destroy
 
   has_many :artist_relationships, dependent: :destroy
   has_many :fans, through: :artist_relationships
