@@ -13,6 +13,8 @@ class Artists::ArtistsController < ApplicationController
     @tour = ArtistTour.new
     @show = ArtistShow.new
     @item = ArtistItem.new
+    @album = ArtistAlbum.new
+    @track = ArtistTrack.new
   end
   
 end

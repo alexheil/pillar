@@ -18,7 +18,6 @@ class Artists::TracksController < ApplicationController
     if @track.save
       redirect_to artist_path(@artist)
       flash[:notice] = "You've successfully added a track!"
-      @artist.fan_track_email
     else
       render 'new'
       flash.now[:alert] = "You've failed!"

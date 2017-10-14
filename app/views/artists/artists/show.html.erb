@@ -255,3 +255,14 @@
 
     <%= f.submit "Create track", data: { disable_with: 'Creating...' } %>
   <% end %>
+
+  <% if album.artist_tracks.any? %>
+    <% album.artist_tracks.each do |track| %>
+    <%= track.title %> <%= track.artist_id %>
+
+    <%= link_to "Delete", artist_album_track_path(@artist, album, track), method: :delete, data: { disable_with: 'Deleting...' } %>
+    <% end %>
+  <% end %>
+
+  <% end %>
+<% end %>

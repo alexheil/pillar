@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171006174913) do
+ActiveRecord::Schema.define(version: 20171007171401) do
+
+  create_table "artist_albums", force: :cascade do |t|
+    t.integer  "artist_id"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "release_month"
+    t.integer  "release_day"
+    t.integer  "release_year"
+    t.integer  "price"
+    t.string   "currency"
+    t.string   "image"
+    t.string   "slug"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["artist_id"], name: "index_artist_albums_on_artist_id"
+  end
 
   create_table "artist_genres", force: :cascade do |t|
     t.integer  "artist_id"
@@ -210,6 +226,22 @@ ActiveRecord::Schema.define(version: 20171006174913) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["artist_id"], name: "index_artist_tours_on_artist_id"
+  end
+
+  create_table "artist_tracks", force: :cascade do |t|
+    t.integer  "artist_id"
+    t.integer  "artist_album_id"
+    t.string   "title"
+    t.integer  "track_number"
+    t.integer  "price"
+    t.string   "currency"
+    t.string   "audio"
+    t.text     "lyrics"
+    t.string   "slug"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["artist_album_id"], name: "index_artist_tracks_on_artist_album_id"
+    t.index ["artist_id"], name: "index_artist_tracks_on_artist_id"
   end
 
   create_table "artist_videos", force: :cascade do |t|
