@@ -52,3 +52,177 @@ a {
   background: $red;
 }
 
+.wrapper {
+	width: 100%;
+	max-width: 1920px;
+	margin: 0 auto;
+}
+
+.container {
+	width: 90%;
+}
+
+/* ************* JAVASCRIPT ************* */
+
+#posts {
+
+}
+
+#postsclick {
+	color: $red;
+	cursor: pointer;
+	border-bottom: transparent 3px solid;
+	-webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+	&:hover {
+		color: $red-accent;
+		border-bottom: $red-accent 3px solid;
+		-webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+	}
+}
+
+#photos {
+	display: none;	
+}
+
+#photosclick {
+	color: $red;
+	cursor: pointer;
+	border-bottom: transparent 3px solid;
+	-webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+	&:hover {
+		color: $red-accent;
+		border-bottom: $red-accent 3px solid;
+		-webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+	}
+}
+
+#videos {
+	display: none;
+}
+
+#videosclick {
+	color: $red;
+	cursor: pointer;
+	border-bottom: transparent 3px solid;
+	-webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+	&:hover {
+		color: $red-accent;
+		border-bottom: $red 3px solid;
+		-webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+	}
+}
+
+#tours {
+	display: none;
+}
+
+#toursclick {
+	color: $red;
+	cursor: pointer;
+	border-bottom: transparent 3px solid;
+	-webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+	&:hover {
+		color: $red-accent;
+		border-bottom: $red 3px solid;
+		-webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+	}
+}
+
+#merch {
+	display: none;
+}
+
+#merchclick {
+	color: $red;
+	cursor: pointer;
+	border-bottom: transparent 3px solid;
+	-webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+	&:hover {
+		color: $red-accent;
+		border-bottom: $red 3px solid;
+		-webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+	}
+}
+
+#music {
+	display: none;	
+}
+
+#musicclick {
+	color: $red;
+	cursor: pointer;
+	border-bottom: transparent 3px solid;
+	-webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+	&:hover {
+		color: $red-accent;
+		border-bottom: $red 3px solid;
+		-webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+	}
+}
+
+#profile {
+	display: none;
+}
+
+#profileclick {
+	color: $red;
+	cursor: pointer;
+	border-bottom: transparent 3px solid;
+	-webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+	&:hover {
+		color: $red-accent;
+		border-bottom: $red 3px solid;
+		-webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+	}
+}
+
+/* ************** NAV **************** */
+
+.nav {
+  width: 100%;
+  display: inline-block;
+  ul {
+    padding: 0;
+    margin: 0;
+    li {
+      display: inline-block;
+      padding: 2vh 2vw;
+      position: relative;
+    }
+  }
+}
+
+.nav-links {
+  color: $black;
+  &:hover {
+    color: $red;
+  }
+}
