@@ -12,6 +12,8 @@
   </ul>
 </nav>
 
+
+
 <% if fan_signed_in? %>
   <% if fan_signed_in? && current_fan.following_artist?(@artist) %>
     <%= button_to "Unfollow", artist_relationship_path(@artist, current_fan.artist_relationship_id(@artist)), method: :delete, data: { disable_with: 'Unfollowing...' } %>

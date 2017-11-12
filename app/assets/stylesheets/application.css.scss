@@ -71,13 +71,12 @@ a {
 #postsclick {
 	color: $red;
 	cursor: pointer;
-	border-bottom: transparent 3px solid;
+	border-bottom: $red 3px solid;
 	-webkit-transition: .3s;
   -moz-transition: .3s;
   -o-transition: .3s;
 	&:hover {
 		color: $red-accent;
-		border-bottom: $red-accent 3px solid;
 		-webkit-transition: .3s;
     -moz-transition: .3s;
     -o-transition: .3s;
@@ -97,7 +96,6 @@ a {
   -o-transition: .3s;
 	&:hover {
 		color: $red-accent;
-		border-bottom: $red-accent 3px solid;
 		-webkit-transition: .3s;
     -moz-transition: .3s;
     -o-transition: .3s;
@@ -117,7 +115,6 @@ a {
   -o-transition: .3s;
 	&:hover {
 		color: $red-accent;
-		border-bottom: $red 3px solid;
 		-webkit-transition: .3s;
     -moz-transition: .3s;
     -o-transition: .3s;
@@ -137,7 +134,6 @@ a {
   -o-transition: .3s;
 	&:hover {
 		color: $red-accent;
-		border-bottom: $red 3px solid;
 		-webkit-transition: .3s;
     -moz-transition: .3s;
     -o-transition: .3s;
@@ -157,7 +153,6 @@ a {
   -o-transition: .3s;
 	&:hover {
 		color: $red-accent;
-		border-bottom: $red 3px solid;
 		-webkit-transition: .3s;
     -moz-transition: .3s;
     -o-transition: .3s;
@@ -177,7 +172,6 @@ a {
   -o-transition: .3s;
 	&:hover {
 		color: $red-accent;
-		border-bottom: $red 3px solid;
 		-webkit-transition: .3s;
     -moz-transition: .3s;
     -o-transition: .3s;
@@ -197,7 +191,6 @@ a {
   -o-transition: .3s;
 	&:hover {
 		color: $red-accent;
-		border-bottom: $red 3px solid;
 		-webkit-transition: .3s;
     -moz-transition: .3s;
     -o-transition: .3s;
