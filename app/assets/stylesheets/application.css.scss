@@ -59,7 +59,22 @@ a {
 }
 
 .container {
-	width: 90%;
+	width: 95%;
+	margin: 0 auto;
+}
+
+/* ************* SPACING ************** */
+
+.one-space {
+	margin: 1vh 0;
+}
+
+.two-space {
+	margin: 2vh 0;
+}
+
+.three-space {
+	margin: 3vh 0;
 }
 
 /* ************* JAVASCRIPT ************* */
