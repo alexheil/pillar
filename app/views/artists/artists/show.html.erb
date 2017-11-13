@@ -25,22 +25,11 @@
 <div class="wrapper">
   <div class="container">
 
-    <nav class="nav">
-      <ul>
-        <li id="postsclick">Posts</li>
-        <li id="photosclick">Photos</li>
-        <li id="videosclick">Videos</li>
-        <li id="toursclick">Tours</li>
-        <li id="merchclick">Merch</li>
-        <li id="musicclick">Music</li>
-        <li id="profileclick">Profile</li>
-      </ul>
-    </nav>
 
-    <div class="three-space">
-      <%= @artist.name %> - <%= @artist.fans.count %> followers
+
+    <div class="five-space">
+      <span class="large-text"><%= @artist.name %></span> - <%= @artist.fans.count %> followers
     </div>
-
 
     <div class="three-space">
       <% if fan_signed_in? %>
@@ -77,411 +66,438 @@
 
 
 
-    <div id="posts">
-      <% if artist_signed_in? && current_artist == @artist %>
-        <%= form_for(@post, url: artist_posts_path(@artist)) do |f| %>
-
-          <div class="field">
-            <%= f.label :content %><br />
-            <%= f.text_field :content %>
-          </div>
-          <div class="field">
-            <%= f.label :link %><br />
-            <%= f.text_field :link %>
-          </div>
-          <div class="field">
-            <%= f.label :image %><br />
-            <%= f.file_field :image %>
-          </div>
-
-          <%= f.submit "Create post", data: { disable_with: 'Creating...' } %>
-        <% end %>
-      <% end %>
-
-      <% if @artist.artist_posts.any? %>
-        <% @artist.artist_posts.each do |post| %>
-          <%= post.content %> <%= link_to "Delete", artist_post_path(@artist, post), method: :delete, data: { disable_with: 'Deleting...' } %>
-        <% end %>
-      <% end %>
-    </div>
+    <sidebar class="artist-sidebar">
+      <nav class="nav">
+        <ul>
+          <li id="postsclick">Posts</li>
+          <li id="photosclick">Photos</li>
+          <li id="videosclick">Videos</li>
+          <li id="toursclick">Tours</li>
+          <li id="merchclick">Merch</li>
+          <li id="musicclick">Music</li>
+          <li id="profileclick">Profile</li>
+        </ul>
+      </nav>
+    </sidebar>
 
 
+    <main class="artist-content">
+      <div id="posts">
+        <% if artist_signed_in? && current_artist == @artist %>
+          <%= form_for(@post, url: artist_posts_path(@artist)) do |f| %>
 
-    <div id="photos">
-      <% if artist_signed_in? && current_artist == @artist %>
-        <%= form_for(@photo_album, url: artist_photo_albums_path(@artist)) do |f| %>
-
-          <div class="field">
-            <%= f.label :title %><br />
-            <%= f.text_field :title %>
-          </div>
-
-          <%= f.submit "Create photo album", data: { disable_with: 'Creating...' } %>
-        <% end %>
-      <% end %>
-
-      <% if @artist.artist_photo_albums.any? %>
-        <% @artist.artist_photo_albums.each do |photo_album| %>
-          <%= photo_album.title %> <%= link_to "Delete", artist_photo_album_path(@artist, photo_album), method: :delete, data: { disable_with: 'Deleting...' } %>
-
-          <%= form_for(@photo, url: artist_photo_album_photos_path(@artist, photo_album)) do |f| %>
-
-          <div class="field">
-            <%= f.label :title %><br />
-            <%= f.text_field :title %>
-          </div>
-          <div class="field">
-            <%= f.label :photo %><br />
-            <%= f.file_field :photo %>
-          </div>
-          <div class="field">
-            <%= f.label :description %><br />
-            <%= f.text_area :description %>
-          </div>
-          <%= f.label :cover_photo %>
-          <%= f.check_box :cover_photo %>
-          <%= f.label :profile_photo %>
-          <%= f.check_box :profile_photo %><br />
-
-          <%= f.submit "Create photo", data: { disable_with: 'Creating...' } %>
-        <% end %>
-
-        <% if photo_album.artist_photos.any? %>
-          <% photo_album.artist_photos.each do |photo| %>
-          <%= photo.title %> <%= photo.artist_id %>
-
-          <%= image_tag(photo.photo_url.to_s) %>
-
-          <%= link_to "Delete", artist_photo_album_photo_path(@artist, photo_album, photo), method: :delete, data: { disable_with: 'Deleting...' } %>
-          <% end %>
-        <% end %>
-
-        <% end %>
-      <% end %>
-    </div>
-
-
-
-
-    <div id="videos">
-      <% if artist_signed_in? && current_artist == @artist %>
-        <%= form_for(@video, url: artist_videos_path(@artist)) do |f| %>
-
-          <div class="field">
-            <%= f.label :title %><br />
-            <%= f.text_field :title %>
-          </div>
-          <div class="field">
-            <%= f.label :description %><br />
-            <%= f.text_area :description %>
-          </div>
-          <div class="field">
-            <%= f.label :video %><br />
-            <%= f.file_field :video %>
-          </div>
-
-          <%= f.submit "Create video", data: { disable_with: 'Creating...' } %>
-        <% end %>
-      <% end %>
-
-      <% if @artist.artist_videos.any? %>
-        <% @artist.artist_videos.each do |video| %>
-          <%= video.title %> <%= video.artist_id %> <%= link_to "Delete", artist_video_path(@artist, video), method: :delete, data: { disable_with: 'Deleting...' } %>
-
-        <% end %>
-      <% end %>
-    </div>
-
-
-
-
-    <div id="tours">
-      <% if artist_signed_in? && current_artist == @artist %>
-        <%= form_for(@tour, url: artist_tours_path(@artist)) do |f| %>
-
-          <div class="field">
-            <%= f.label :title %><br />
-            <%= f.text_field :title %>
-          </div>
-          <div class="field">
-            <%= f.label :description %><br />
-            <%= f.text_area :description %>
-          </div>
-          <div class="field">
-            <%= f.label :amount_of_shows %><br />
-            <%= f.text_field :amount_of_shows %>
-          </div>
-          <div class="field">
-            <%= f.label :artists %><br />
-            <%= f.text_field :artists %>
-          </div>
-          <div class="field">
-            <%= f.label :image %><br />
-            <%= f.file_field :image %>
-          </div>
-
-          <%= f.submit "Create tour", data: { disable_with: 'Creating...' } %>
-        <% end %>
-      <% end %>
-
-      <% if @artist.artist_tours.any? %>
-        <% @artist.artist_tours.each do |tour| %>
-          <%= tour.title %> <%= link_to "Delete", artist_tour_path(@artist, tour), method: :delete, data: { disable_with: 'Deleting...' } %>
-
-          <%= form_for(@show, url: artist_tour_shows_path(@artist, tour)) do |f| %>
-
-          <div class="field">
-            <%= f.label :title %><br />
-            <%= f.text_field :title %>
-          </div>
-          <div class="field">
-            <%= f.label :month %><br />
-            <%= f.text_field :month %>
-          </div>
-          <div class="field">
-            <%= f.label :day %><br />
-            <%= f.text_field :day %>
-          </div>
-          <div class="field">
-            <%= f.label :year %><br />
-            <%= f.text_field :year %>
-          </div>
-          <div class="field">
-            <%= f.label :venue %><br />
-            <%= f.text_field :venue %>
-          </div>
-          <div class="field">
-            <%= f.label :description %><br />
-            <%= f.text_area :description %>
-          </div>
-          <div class="field">
-            <%= f.label :ticket_url %><br />
-            <%= f.text_field :ticket_url %>
-          </div>
-          <div class="field">
-            <%= f.label :image %><br />
-            <%= f.file_field :image %>
-          </div>
-          <div class="field">
-            <%= f.label :is_independent? %><br />
-            <%= f.check_box :is_independent? %>
-          </div>
-
-          <%= fields_for :artist_show_location do |u| %>
             <div class="field">
-              <%= u.label :city %><br />
-              <%= u.text_field :city %>
+              <%= f.label :content %><br />
+              <%= f.text_field :content %>
             </div>
-          <% end %>
+            <div class="a inline" id="artistpostlinkclick">
+              Add a link
+            </div>
+            <div class="field" id="artistpostlink">
+              <%= f.label :link %><br />
+              <%= f.text_field :link %>
+            </div>
+            or
+            <div class="a inline" id="artistpostimageclick">
+              Add a photo
+            </div>
+            <div class="field" id="artistpostimage">
+              <%= f.label :image %><br />
+              <%= f.file_field :image %>
+            </div>
 
-          <%= f.submit "Create show", data: { disable_with: 'Creating...' } %>
-        <% end %>
-
-        <% if tour.artist_shows.any? %>
-          <% tour.artist_shows.each do |show| %>
-          <%= show.title %> <%= show.artist_id %> <%= show.artist_show_location.city %>
-
-          <%= link_to "Delete", artist_tour_show_path(@artist, tour, show), method: :delete, data: { disable_with: 'Deleting...' } %>
-          <% end %>
-        <% end %>
-
-        <% end %>
-      <% end %>
-    </div>
-
-
-
-
-    <div id="merch">
-      <% if artist_signed_in? && current_artist == @artist %>
-        <%= form_for(@item, url: artist_items_path(@artist)) do |f| %>
-
-          <div class="field">
-            <%= f.label :title %><br />
-            <%= f.text_field :title %>
-          </div>
-          <div class="field">
-            <%= f.label :description %><br />
-            <%= f.text_field :description %>
-          </div>
-          <div class="field">
-            <%= f.label :category %><br />
-            <%= f.text_field :category %>
-          </div>
-          <div class="field">
-            <%= f.label :base_price %><br />
-            <%= f.text_field :base_price %>
-          </div>
-          <div class="field">
-            <%= f.label :shipping_price %><br />
-            <%= f.text_field :shipping_price %>
-          </div>
-          <div class="field">
-            <%= f.label :currency %><br />
-            <%= f.text_field :currency %>
-          </div>
-          <div class="field">
-            <%= f.label :quantity %><br />
-            <%= f.text_field :quantity %>
-          </div>
-          <div class="field">
-            <%= f.label :options %><br />
-            <%= f.text_field :options %>
-          </div>
-          <div class="field">
-            <%= f.label :image %><br />
-            <%= f.text_field :image %>
-          </div>
-          <div class="field">
-            <%= f.label :image_two %><br />
-            <%= f.text_field :image_two %>
-          </div>
-          <div class="field">
-            <%= f.label :image_three %><br />
-            <%= f.text_field :image_three %>
-          </div>
-
-          <%= f.submit "Create item", data: { disable_with: 'Creating...' } %>
-        <% end %>
-      <% end %>
-
-      <% if @artist.artist_items.any? %>
-        <% @artist.artist_items.each do |item| %>
-          <%= item.title %> <%= item.artist_id %> <%= link_to "Delete", artist_item_path(@artist, item), method: :delete, data: { disable_with: 'Deleting...' } %>
-
-        <% end %>
-      <% end %>
-    </div>
-
-
-
-    <div id="music">
-      <% if artist_signed_in? && current_artist == @artist %>
-        <%= form_for(@album, url: artist_albums_path(@artist)) do |f| %>
-
-          <div class="field">
-            <%= f.label :title %><br />
-            <%= f.text_field :title %>
-          </div>
-          <div class="field">
-            <%= f.label :description %><br />
-            <%= f.text_area :description %>
-          </div>
-          <div class="field">
-            <%= f.label :release_month %><br />
-            <%= f.text_field :release_month %>
-          </div>
-          <div class="field">
-            <%= f.label :release_day %><br />
-            <%= f.text_field :release_day %>
-          </div>
-          <div class="field">
-            <%= f.label :release_year %><br />
-            <%= f.text_field :release_year %>
-          </div>
-          <div class="field">
-            <%= f.label :price %><br />
-            <%= f.text_field :price %>
-          </div>
-          <div class="field">
-            <%= f.label :currency %><br />
-            <%= f.text_field :currency %>
-          </div>
-          <div class="field">
-            <%= f.label :image %><br />
-            <%= f.file_field :image %>
-          </div>
-
-          <%= f.submit "Create album", data: { disable_with: 'Creating...' } %>
-        <% end %>
-      <% end %>
-
-      <% if @artist.artist_albums.any? %>
-        <% @artist.artist_albums.each do |album| %>
-          <%= album.title %> <%= link_to "Delete", artist_album_path(@artist, album), method: :delete, data: { disable_with: 'Deleting...' } %>
-
-          <%= form_for(@track, url: artist_album_tracks_path(@artist, album)) do |f| %>
-
-          <div class="field">
-            <%= f.label :title %><br />
-            <%= f.text_field :title %>
-          </div>
-          <div class="field">
-            <%= f.label :track_number %><br />
-            <%= f.text_field :track_number %>
-          </div>
-          <div class="field">
-            <%= f.label :price %><br />
-            <%= f.text_field :price %>
-          </div>
-          <div class="field">
-            <%= f.label :currency %><br />
-            <%= f.text_field :currency %>
-          </div>
-          <div class="field">
-            <%= f.label :audio %><br />
-            <%= f.text_field :audio %>
-          </div>
-          <div class="field">
-            <%= f.label :lyrics %><br />
-            <%= f.text_area :lyrics %>
-          </div>
-
-          <%= f.submit "Create track", data: { disable_with: 'Creating...' } %>
-        <% end %>
-
-        <% if album.artist_tracks.any? %>
-          <% album.artist_tracks.each do |track| %>
-          <%= track.title %> <%= track.artist_id %>
-
-          <%= link_to "Delete", artist_album_track_path(@artist, album, track), method: :delete, data: { disable_with: 'Deleting...' } %>
+            <br />
+            <%= f.submit "Create post", data: { disable_with: 'Creating...' } %>
           <% end %>
         <% end %>
 
+        <% if @artist.artist_posts.any? %>
+          <% @artist.artist_posts.each do |post| %>
+            <%= post.content %> <%= link_to "Delete", artist_post_path(@artist, post), method: :delete, data: { disable_with: 'Deleting...' } %>
+          <% end %>
         <% end %>
-      <% end %> 
-    </div>
+      </div>
 
 
 
+      <div id="photos">
+        <% if artist_signed_in? && current_artist == @artist %>
+          <%= form_for(@photo_album, url: artist_photo_albums_path(@artist)) do |f| %>
 
+            <div class="field">
+              <%= f.label :title %><br />
+              <%= f.text_field :title %>
+            </div>
 
-    <div id="profile">
-      <% if artist_signed_in? %>
-        <% if current_artist.artist_profile.year_founded.blank? %>
-        you have profile
-        <% else %>
-        your year founded is <%= current_artist.artist_profile.year_founded %>
+            <%= f.submit "Create photo album", data: { disable_with: 'Creating...' } %>
+          <% end %>
         <% end %>
-        <% if current_artist.artist_genre.genre.blank? %>
-        you have genre
-        <% else %>
-        your genre is <%= current_artist.artist_genre.genre %>
+
+        <% if @artist.artist_photo_albums.any? %>
+          <% @artist.artist_photo_albums.each do |photo_album| %>
+            <%= photo_album.title %> <%= link_to "Delete", artist_photo_album_path(@artist, photo_album), method: :delete, data: { disable_with: 'Deleting...' } %>
+
+            <%= form_for(@photo, url: artist_photo_album_photos_path(@artist, photo_album)) do |f| %>
+
+            <div class="field">
+              <%= f.label :title %><br />
+              <%= f.text_field :title %>
+            </div>
+            <div class="field">
+              <%= f.label :photo %><br />
+              <%= f.file_field :photo %>
+            </div>
+            <div class="field">
+              <%= f.label :description %><br />
+              <%= f.text_area :description %>
+            </div>
+            <%= f.label :cover_photo %>
+            <%= f.check_box :cover_photo %>
+            <%= f.label :profile_photo %>
+            <%= f.check_box :profile_photo %><br />
+
+            <%= f.submit "Create photo", data: { disable_with: 'Creating...' } %>
+          <% end %>
+
+          <% if photo_album.artist_photos.any? %>
+            <% photo_album.artist_photos.each do |photo| %>
+            <%= photo.title %> <%= photo.artist_id %>
+
+            <%= image_tag(photo.photo_url.to_s) %>
+
+            <%= link_to "Delete", artist_photo_album_photo_path(@artist, photo_album, photo), method: :delete, data: { disable_with: 'Deleting...' } %>
+            <% end %>
+          <% end %>
+
+          <% end %>
         <% end %>
-        <% if current_artist.artist_location.city.blank? %>
-        you have location
-        <% else %>
-        your city is <%= current_artist.artist_location.city %>
-        <% end %>
-        <% if current_artist.artist_theme.main_color.blank? %>
-        you have theme
-        <% else %>
-        your main color is <%= current_artist.artist_theme.main_color %>
-        <% end %>
-        </br>
-        <% if current_artist.artist_store.first_name.blank? %>
-        you have store
-        <% else %>
-        your store is <%= current_artist.artist_store.first_name %>
-        <% end %>
-        </br>
-        <% @artist.artist_members.each do |member| %>
-          <%= member.name %>
-        <% end %></br>
-        <%= link_to "Edit profile", edit_artist_profile_path(current_artist) %>
-      <% end %>
-    </div>
+      </div>
 
 
+
+
+      <div id="videos">
+        <% if artist_signed_in? && current_artist == @artist %>
+          <%= form_for(@video, url: artist_videos_path(@artist)) do |f| %>
+
+            <div class="field">
+              <%= f.label :title %><br />
+              <%= f.text_field :title %>
+            </div>
+            <div class="field">
+              <%= f.label :description %><br />
+              <%= f.text_area :description %>
+            </div>
+            <div class="field">
+              <%= f.label :video %><br />
+              <%= f.file_field :video %>
+            </div>
+
+            <%= f.submit "Create video", data: { disable_with: 'Creating...' } %>
+          <% end %>
+        <% end %>
+
+        <% if @artist.artist_videos.any? %>
+          <% @artist.artist_videos.each do |video| %>
+            <%= video.title %> <%= video.artist_id %> <%= link_to "Delete", artist_video_path(@artist, video), method: :delete, data: { disable_with: 'Deleting...' } %>
+
+          <% end %>
+        <% end %>
+      </div>
+
+
+
+
+      <div id="tours">
+        <% if artist_signed_in? && current_artist == @artist %>
+          <%= form_for(@tour, url: artist_tours_path(@artist)) do |f| %>
+
+            <div class="field">
+              <%= f.label :title %><br />
+              <%= f.text_field :title %>
+            </div>
+            <div class="field">
+              <%= f.label :description %><br />
+              <%= f.text_area :description %>
+            </div>
+            <div class="field">
+              <%= f.label :amount_of_shows %><br />
+              <%= f.text_field :amount_of_shows %>
+            </div>
+            <div class="field">
+              <%= f.label :artists %><br />
+              <%= f.text_field :artists %>
+            </div>
+            <div class="field">
+              <%= f.label :image %><br />
+              <%= f.file_field :image %>
+            </div>
+
+            <%= f.submit "Create tour", data: { disable_with: 'Creating...' } %>
+          <% end %>
+        <% end %>
+
+        <% if @artist.artist_tours.any? %>
+          <% @artist.artist_tours.each do |tour| %>
+            <%= tour.title %> <%= link_to "Delete", artist_tour_path(@artist, tour), method: :delete, data: { disable_with: 'Deleting...' } %>
+
+            <%= form_for(@show, url: artist_tour_shows_path(@artist, tour)) do |f| %>
+
+            <div class="field">
+              <%= f.label :title %><br />
+              <%= f.text_field :title %>
+            </div>
+            <div class="field">
+              <%= f.label :month %><br />
+              <%= f.text_field :month %>
+            </div>
+            <div class="field">
+              <%= f.label :day %><br />
+              <%= f.text_field :day %>
+            </div>
+            <div class="field">
+              <%= f.label :year %><br />
+              <%= f.text_field :year %>
+            </div>
+            <div class="field">
+              <%= f.label :venue %><br />
+              <%= f.text_field :venue %>
+            </div>
+            <div class="field">
+              <%= f.label :description %><br />
+              <%= f.text_area :description %>
+            </div>
+            <div class="field">
+              <%= f.label :ticket_url %><br />
+              <%= f.text_field :ticket_url %>
+            </div>
+            <div class="field">
+              <%= f.label :image %><br />
+              <%= f.file_field :image %>
+            </div>
+            <div class="field">
+              <%= f.label :is_independent? %><br />
+              <%= f.check_box :is_independent? %>
+            </div>
+
+            <%= fields_for :artist_show_location do |u| %>
+              <div class="field">
+                <%= u.label :city %><br />
+                <%= u.text_field :city %>
+              </div>
+            <% end %>
+
+            <%= f.submit "Create show", data: { disable_with: 'Creating...' } %>
+          <% end %>
+
+          <% if tour.artist_shows.any? %>
+            <% tour.artist_shows.each do |show| %>
+            <%= show.title %> <%= show.artist_id %> <%= show.artist_show_location.city %>
+
+            <%= link_to "Delete", artist_tour_show_path(@artist, tour, show), method: :delete, data: { disable_with: 'Deleting...' } %>
+            <% end %>
+          <% end %>
+
+          <% end %>
+        <% end %>
+      </div>
+
+
+
+
+      <div id="merch">
+        <% if artist_signed_in? && current_artist == @artist %>
+          <%= form_for(@item, url: artist_items_path(@artist)) do |f| %>
+
+            <div class="field">
+              <%= f.label :title %><br />
+              <%= f.text_field :title %>
+            </div>
+            <div class="field">
+              <%= f.label :description %><br />
+              <%= f.text_field :description %>
+            </div>
+            <div class="field">
+              <%= f.label :category %><br />
+              <%= f.text_field :category %>
+            </div>
+            <div class="field">
+              <%= f.label :base_price %><br />
+              <%= f.text_field :base_price %>
+            </div>
+            <div class="field">
+              <%= f.label :shipping_price %><br />
+              <%= f.text_field :shipping_price %>
+            </div>
+            <div class="field">
+              <%= f.label :currency %><br />
+              <%= f.text_field :currency %>
+            </div>
+            <div class="field">
+              <%= f.label :quantity %><br />
+              <%= f.text_field :quantity %>
+            </div>
+            <div class="field">
+              <%= f.label :options %><br />
+              <%= f.text_field :options %>
+            </div>
+            <div class="field">
+              <%= f.label :image %><br />
+              <%= f.text_field :image %>
+            </div>
+            <div class="field">
+              <%= f.label :image_two %><br />
+              <%= f.text_field :image_two %>
+            </div>
+            <div class="field">
+              <%= f.label :image_three %><br />
+              <%= f.text_field :image_three %>
+            </div>
+
+            <%= f.submit "Create item", data: { disable_with: 'Creating...' } %>
+          <% end %>
+        <% end %>
+
+        <% if @artist.artist_items.any? %>
+          <% @artist.artist_items.each do |item| %>
+            <%= item.title %> <%= item.artist_id %> <%= link_to "Delete", artist_item_path(@artist, item), method: :delete, data: { disable_with: 'Deleting...' } %>
+
+          <% end %>
+        <% end %>
+      </div>
+
+
+
+      <div id="music">
+        <% if artist_signed_in? && current_artist == @artist %>
+          <%= form_for(@album, url: artist_albums_path(@artist)) do |f| %>
+
+            <div class="field">
+              <%= f.label :title %><br />
+              <%= f.text_field :title %>
+            </div>
+            <div class="field">
+              <%= f.label :description %><br />
+              <%= f.text_area :description %>
+            </div>
+            <div class="field">
+              <%= f.label :release_month %><br />
+              <%= f.text_field :release_month %>
+            </div>
+            <div class="field">
+              <%= f.label :release_day %><br />
+              <%= f.text_field :release_day %>
+            </div>
+            <div class="field">
+              <%= f.label :release_year %><br />
+              <%= f.text_field :release_year %>
+            </div>
+            <div class="field">
+              <%= f.label :price %><br />
+              <%= f.text_field :price %>
+            </div>
+            <div class="field">
+              <%= f.label :currency %><br />
+              <%= f.text_field :currency %>
+            </div>
+            <div class="field">
+              <%= f.label :image %><br />
+              <%= f.file_field :image %>
+            </div>
+
+            <%= f.submit "Create album", data: { disable_with: 'Creating...' } %>
+          <% end %>
+        <% end %>
+
+        <% if @artist.artist_albums.any? %>
+          <% @artist.artist_albums.each do |album| %>
+            <%= album.title %> <%= link_to "Delete", artist_album_path(@artist, album), method: :delete, data: { disable_with: 'Deleting...' } %>
+
+            <%= form_for(@track, url: artist_album_tracks_path(@artist, album)) do |f| %>
+
+            <div class="field">
+              <%= f.label :title %><br />
+              <%= f.text_field :title %>
+            </div>
+            <div class="field">
+              <%= f.label :track_number %><br />
+              <%= f.text_field :track_number %>
+            </div>
+            <div class="field">
+              <%= f.label :price %><br />
+              <%= f.text_field :price %>
+            </div>
+            <div class="field">
+              <%= f.label :currency %><br />
+              <%= f.text_field :currency %>
+            </div>
+            <div class="field">
+              <%= f.label :audio %><br />
+              <%= f.text_field :audio %>
+            </div>
+            <div class="field">
+              <%= f.label :lyrics %><br />
+              <%= f.text_area :lyrics %>
+            </div>
+
+            <%= f.submit "Create track", data: { disable_with: 'Creating...' } %>
+          <% end %>
+
+          <% if album.artist_tracks.any? %>
+            <% album.artist_tracks.each do |track| %>
+            <%= track.title %> <%= track.artist_id %>
+
+            <%= link_to "Delete", artist_album_track_path(@artist, album, track), method: :delete, data: { disable_with: 'Deleting...' } %>
+            <% end %>
+          <% end %>
+
+          <% end %>
+        <% end %> 
+      </div>
+
+
+
+
+
+      <div id="profile">
+        <% if artist_signed_in? %>
+          <% if current_artist.artist_profile.year_founded.blank? %>
+          you have profile
+          <% else %>
+          your year founded is <%= current_artist.artist_profile.year_founded %>
+          <% end %>
+          <% if current_artist.artist_genre.genre.blank? %>
+          you have genre
+          <% else %>
+          your genre is <%= current_artist.artist_genre.genre %>
+          <% end %>
+          <% if current_artist.artist_location.city.blank? %>
+          you have location
+          <% else %>
+          your city is <%= current_artist.artist_location.city %>
+          <% end %>
+          <% if current_artist.artist_theme.main_color.blank? %>
+          you have theme
+          <% else %>
+          your main color is <%= current_artist.artist_theme.main_color %>
+          <% end %>
+          </br>
+          <% if current_artist.artist_store.first_name.blank? %>
+          you have store
+          <% else %>
+          your store is <%= current_artist.artist_store.first_name %>
+          <% end %>
+          </br>
+          <% @artist.artist_members.each do |member| %>
+            <%= member.name %>
+          <% end %></br>
+          <%= link_to "Edit profile", edit_artist_profile_path(current_artist) %>
+        <% end %>
+      </div>
+
+
+    </main>
+
+    
   </div>
 </div>

@@ -63,7 +63,21 @@ a {
 	margin: 0 auto;
 }
 
-/* ************* SPACING ************** */
+.a {
+	color: $red;
+  text-decoration: none;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+  &:hover {
+    color: $red-accent;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+  }
+}
+
+/* ************* SPACING & SIZE ************** */
 
 .one-space {
 	margin: 1vh 0;
@@ -77,6 +91,44 @@ a {
 	margin: 3vh 0;
 }
 
+.five-space {
+	margin: 5vh 0;
+}
+
+.tiny-text {
+	font-size: .75em;
+}
+
+.normal-text {
+	font-size: 1em;
+}
+
+.medium-text {
+	font-size: 1.5em;
+}
+
+.large-text {
+	font-size: 2em;
+}
+
+.inline {
+	display: inline-block;
+}
+
+.artist-sidebar {
+	margin: 2vh 0;
+  width: 20%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.artist-content {
+	margin: 2vh 0;
+  width: 78%;
+  display: inline-block;
+  vertical-align: top;
+}
+
 /* ************* JAVASCRIPT ************* */
 
 #posts {
@@ -86,7 +138,7 @@ a {
 #postsclick {
 	color: $red;
 	cursor: pointer;
-	border-bottom: $red 3px solid;
+	border-left: $red 3px solid;
 	-webkit-transition: .3s;
   -moz-transition: .3s;
   -o-transition: .3s;
@@ -105,7 +157,7 @@ a {
 #photosclick {
 	color: $red;
 	cursor: pointer;
-	border-bottom: transparent 3px solid;
+	border-left: transparent 3px solid;
 	-webkit-transition: .3s;
   -moz-transition: .3s;
   -o-transition: .3s;
@@ -124,7 +176,7 @@ a {
 #videosclick {
 	color: $red;
 	cursor: pointer;
-	border-bottom: transparent 3px solid;
+	border-left: transparent 3px solid;
 	-webkit-transition: .3s;
   -moz-transition: .3s;
   -o-transition: .3s;
@@ -143,7 +195,7 @@ a {
 #toursclick {
 	color: $red;
 	cursor: pointer;
-	border-bottom: transparent 3px solid;
+	border-left: transparent 3px solid;
 	-webkit-transition: .3s;
   -moz-transition: .3s;
   -o-transition: .3s;
@@ -162,7 +214,7 @@ a {
 #merchclick {
 	color: $red;
 	cursor: pointer;
-	border-bottom: transparent 3px solid;
+	border-left: transparent 3px solid;
 	-webkit-transition: .3s;
   -moz-transition: .3s;
   -o-transition: .3s;
@@ -181,7 +233,7 @@ a {
 #musicclick {
 	color: $red;
 	cursor: pointer;
-	border-bottom: transparent 3px solid;
+	border-left: transparent 3px solid;
 	-webkit-transition: .3s;
   -moz-transition: .3s;
   -o-transition: .3s;
@@ -200,7 +252,7 @@ a {
 #profileclick {
 	color: $red;
 	cursor: pointer;
-	border-bottom: transparent 3px solid;
+	border-left: transparent 3px solid;
 	-webkit-transition: .3s;
   -moz-transition: .3s;
   -o-transition: .3s;
@@ -212,6 +264,14 @@ a {
 	}
 }
 
+#artistpostlink {
+	display: none;
+}
+
+#artistpostimage {
+	display: none;
+}
+
 /* ************** NAV **************** */
 
 .nav {
@@ -221,7 +281,7 @@ a {
     padding: 0;
     margin: 0;
     li {
-      display: inline-block;
+      display: block;
       padding: 2vh 2vw;
       position: relative;
     }
