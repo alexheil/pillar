@@ -107,6 +107,10 @@ a {
 	font-size: 1em;
 }
 
+.middle-text {
+	font-size: 1.25em;
+}
+
 .medium-text {
 	font-size: 1.5em;
 }
@@ -139,6 +143,21 @@ a {
   text-align: center;
   font-size: 2em;
   line-height: 1.25em;
+}
+
+.post-container {
+	margin: 3vh 0;
+	padding-left: 2vw;
+	border-left: 3px solid transparent;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+  &:hover {
+    border-left: 3px solid $red;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+  }
 }
 
 /* ************* JAVASCRIPT ************* */
@@ -311,7 +330,7 @@ a {
 /* ******************* FORMS ************** */
 
 .form-container {
-	
+	width: 50%;
 }
 
 .text-field {
@@ -335,9 +354,10 @@ a {
   width: 100%;
   min-width: 100%;
   max-width: 100%;
-  height: 25vh;
+  height: 15vh;
   font-size: 18px;
-  padding: 20px;
+  font-weight: 100;
+  padding: 16px;
   background: $white;
   border-top: 1px solid transparent;
   border-left: 1px solid transparent;
@@ -346,7 +366,7 @@ a {
   display: inline-block;
   box-sizing: border-box;
   &:focus {
-    border: 3px solid $black;
+    border: 1px solid $black;
   }
 }
 
@@ -486,5 +506,13 @@ a {
 }
 
 
+/* ***************** MEDIA QUERY ************** */
 
+@media screen and (max-width: 800px) {
+
+	.form-container {
+		width: 100%;
+	}
+
+}
 

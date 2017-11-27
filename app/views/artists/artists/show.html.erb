@@ -86,37 +86,46 @@
 
     <main class="artist-content">
       <div id="posts">
-        <% if artist_signed_in? && current_artist == @artist %>
-          <%= form_for(@post, url: artist_posts_path(@artist)) do |f| %>
+        <div class="form-container">
+          <% if artist_signed_in? && current_artist == @artist %>
+            <%= form_for(@post, url: artist_posts_path(@artist)) do |f| %>
 
-            <div class="field">
-              <%= f.label :content %>
-              <%= f.text_area :content, class: "text-area" %>
-            </div>
-            <div class="a inline" id="artistpostlinkclick">
-              Add a link
-            </div>
-            or
-            <div class="a inline" id="artistpostimageclick">
-              Add a photo
-            </div>
-            <div class="field" id="artistpostlink">
-              <%= f.label :link %><br />
-              <%= f.text_field :link, class: "text-field" %>
-            </div>
-            <div class="field" id="artistpostimage">
-              <%= f.label :image %><br />
-              <%= f.file_field :image %>
-            </div>
+              <div class="field">
+                <%= f.label :content, "What's happening?", class: "middle-text" %>
+                <%= f.text_area :content, class: "text-area" %>
+              </div>
+              <div class="a inline" id="artistpostlinkclick">
+                Add a link
+              </div>
+              or
+              <div class="a inline" id="artistpostimageclick">
+                Add a photo
+              </div>
+              <div class="field" id="artistpostlink">
+                <%= f.label :link %><br />
+                <%= f.text_field :link, class: "text-field" %>
+              </div>
+              <div class="field" id="artistpostimage">
+                <%= f.label :image %><br />
+                <%= f.file_field :image %>
+              </div>
 
-            <br />
-            <%= f.submit "Create post", data: { disable_with: 'Creating...' } %>
+              <br />
+              <%= f.submit "Create post", data: { disable_with: 'Creating...' } %>
+            </div>
           <% end %>
         <% end %>
 
         <% if @artist.artist_posts.any? %>
           <% @artist.artist_posts.each do |post| %>
-            <%= post.content %> <%= link_to "Delete", artist_post_path(@artist, post), method: :delete, data: { disable_with: 'Deleting...' } if artist_signed_in? && current_artist == @artist %>
+            <div class="post-container">
+              <div class="one-space">
+                <%= link_to @artist.name, artist_path(@artist) %> <span class="tiny-text">posted <%= time_ago_in_words(post.created_at) %> ago <%= link_to "Delete", artist_post_path(@artist, post), method: :delete, data: { disable_with: 'Deleting...' } if artist_signed_in? && current_artist == @artist %></span>
+              </div>
+              <div class="one-space">
+                <%= post.content %>
+              </div>
+            </div>
           <% end %>
         <% end %>
       </div>
