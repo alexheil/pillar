@@ -1,51 +1,44 @@
 class FanMailer < ApplicationMailer
 
-	def post_email(fan)
+	def post_email(fan, artist, artist_post)
 	  @fan = fan
-	  @aritst = artist
-	  @post = artist_post
+	  @artist = artist
+	  @post = artist_post.first
 	  mail(to: @fan.email, subject: 'Sent some posts | Noisaea')
 	end
 
-	def photo_email(fan)
+	def photo_email(fan, artist, artist_photo)
 	  @fan = fan
-	  @aritst = artist
-	  @photo = artist_photo
+	  @artist = artist
+	  @photo = artist_photo.first
 	  mail(to: @fan.email, subject: 'Sent some posts | Noisaea')
 	end
 
-	def video_email(fan)
+	def video_email(fan, artist, artist_video)
 	  @fan = fan
-	  @aritst = artist
-	  @video = artist_video
+	  @artist = artist
+	  @video = artist_video.first
 	  mail(to: @fan.email, subject: 'Sent some posts | Noisaea')
 	end
 
-	def merch_email(fan)
+	def tour_email(fan, artist, artist_tour)
 	  @fan = fan
-	  @aritst = artist
-	  @merch = artist_merch
+	  @artist = artist
+	  @tour = artist_tour.first
 	  mail(to: @fan.email, subject: 'Sent some posts | Noisaea')
 	end
 
-	def tour_email(fan)
+	def merch_email(fan, artist, artist_item)
 	  @fan = fan
-	  @aritst = artist
-	  @tour = artist_tour
+	  @artist = artist
+	  @item = artist_item.first
 	  mail(to: @fan.email, subject: 'Sent some posts | Noisaea')
 	end
 
-	def merch_email(fan)
+	def album_email(fan, artist, artist_album)
 	  @fan = fan
-	  @aritst = artist
-	  @item = artist_item
-	  mail(to: @fan.email, subject: 'Sent some posts | Noisaea')
-	end
-
-	def album_email(fan)
-	  @fan = fan
-	  @aritst = artist
-	  @album = artist_album
+	  @artist = artist
+	  @album = artist_album.first
 	  mail(to: @fan.email, subject: 'Sent some posts | Noisaea')
 	end
 
