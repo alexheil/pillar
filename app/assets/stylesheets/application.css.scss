@@ -95,6 +95,13 @@ a {
 	margin: 5vh 0;
 }
 
+.three-column {
+	width: 32%;
+  margin: 2vh 0;
+  display: inline-block;
+  vertical-align: top;
+}
+
 .crazy-tiny-text {
 	font-size: .5em;
 }
@@ -117,6 +124,10 @@ a {
 
 .large-text {
 	font-size: 2em;
+}
+
+.thin-text {
+	font-weight: 300;
 }
 
 .inline {
@@ -303,6 +314,158 @@ a {
 	display: none;
 }
 
+#photoalbumclick {
+	color: $red;
+	cursor: pointer;
+	border-left: transparent 3px solid;
+	-webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+	&:hover {
+		color: $red-accent;
+		-webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+  }
+}
+
+#photoalbumcontainer {
+	display: none;
+}
+
+#photoclick {
+	color: $red;
+	cursor: pointer;
+	border-left: transparent 3px solid;
+	-webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+	&:hover {
+		color: $red-accent;
+		-webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+  }
+}
+
+#photocontainer {
+	display: none;
+}
+
+#videoclick {
+	color: $red;
+	cursor: pointer;
+	border-left: transparent 3px solid;
+	-webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+	&:hover {
+		color: $red-accent;
+		-webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+  }
+}
+
+#videocontainer {
+	display: none;
+}
+
+#tourclick {
+	color: $red;
+	cursor: pointer;
+	border-left: transparent 3px solid;
+	-webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+	&:hover {
+		color: $red-accent;
+		-webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+  }
+}
+
+#tourcontainer {
+	display: none;
+}
+
+#showclick {
+	color: $red;
+	cursor: pointer;
+	border-left: transparent 3px solid;
+	-webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+	&:hover {
+		color: $red-accent;
+		-webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+  }
+}
+
+#showcontainer {
+	display: none;
+}
+
+#merchclick {
+	color: $red;
+	cursor: pointer;
+	border-left: transparent 3px solid;
+	-webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+	&:hover {
+		color: $red-accent;
+		-webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+  }
+}
+
+#merchcontainer {
+	display: none;
+}
+
+#albumclick {
+	color: $red;
+	cursor: pointer;
+	border-left: transparent 3px solid;
+	-webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+	&:hover {
+		color: $red-accent;
+		-webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+  }
+}
+
+#albumcontainer {
+	display: none;
+}
+
+#trackclick {
+	color: $red;
+	cursor: pointer;
+	border-left: transparent 3px solid;
+	-webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+	&:hover {
+		color: $red-accent;
+		-webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+  }
+}
+
+#trackcontainer {
+	display: none;
+}
+
 /* ************** NAV **************** */
 
 .nav {
@@ -333,6 +496,10 @@ a {
 	width: 50%;
 }
 
+.form-container-large {
+	width: 100%;
+}
+
 .text-field {
 	width: 100%;
   font-size: 1.25em;
@@ -355,7 +522,7 @@ a {
   min-width: 100%;
   max-width: 100%;
   height: 15vh;
-  font-size: 18px;
+  font-size: 1.25em;
   font-weight: 100;
   padding: 16px;
   background: $white;
@@ -377,7 +544,8 @@ a {
 
 .submit-button {
   width: 100%;
-  padding: 2vh 5vw;
+  padding: 16px 1vw;
+  margin: 2vh 0;
   text-align: center;
   font-size: 1.3em;
   font-weight: 300;
@@ -403,7 +571,7 @@ a {
   padding: 16px 1vw;
   text-align: center;
   font-size: 1em;
-  font-weight: 300;
+  font-weight: 100;
   border: 3px solid $red;
   background-color: transparent;
   color: $red;
@@ -511,6 +679,10 @@ a {
 @media screen and (max-width: 800px) {
 
 	.form-container {
+		width: 100%;
+	}
+
+	.three-column {
 		width: 100%;
 	}
 

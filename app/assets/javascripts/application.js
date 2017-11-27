@@ -128,6 +128,46 @@ $(document).on('page:load', emailCheckbox);
 
 
 
+var createPosts = function() {
+
+  $('#photoalbumclick').click(function() {
+    $('#photoalbumcontainer').toggle(300);
+  });
+
+  $('#photoclick').click(function() {
+    $('#photocontainer').toggle(300);
+  });
+
+  $('#videoclick').click(function() {
+    $('#videocontainer').toggle(300);
+  });
+
+  $('#tourclick').click(function() {
+    $('#tourcontainer').toggle(300);
+  });
+
+  $('#showclick').click(function() {
+    $('#showcontainer').toggle(300);
+  });
+
+  $('#merchclick').click(function() {
+    $('#merchcontainer').toggle(300);
+  });
+
+  $('#albumclick').click(function() {
+    $('#albumcontainer').toggle(300);
+  });
+
+  $('#trackclick').click(function() {
+    $('#trackcontainer').toggle(300);
+  });
+
+};
+
+$(document).ready(createPosts);
+$(document).on('page:load', createPosts);
+
+
 
 
 

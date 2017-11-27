@@ -21,6 +21,13 @@ class FanMailer < ApplicationMailer
 	  mail(to: @fan.email, subject: 'Sent some posts | Noisaea')
 	end
 
+	def show_email(fan, artist, artist_show)
+	  @fan = fan
+	  @artist = artist
+	  @show = artist_show.first
+	  mail(to: @fan.email, subject: 'Sent some posts | Noisaea')
+	end
+
 	def tour_email(fan, artist, artist_tour)
 	  @fan = fan
 	  @artist = artist

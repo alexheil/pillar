@@ -86,8 +86,8 @@
 
     <main class="artist-content">
       <div id="posts">
-        <div class="form-container">
-          <% if artist_signed_in? && current_artist == @artist %>
+        <% if artist_signed_in? && current_artist == @artist %>
+          <div class="form-container">
             <%= form_for(@post, url: artist_posts_path(@artist)) do |f| %>
 
               <div class="field">
@@ -111,9 +111,9 @@
               </div>
 
               <br />
-              <%= f.submit "Create post", data: { disable_with: 'Creating...' } %>
-            </div>
-          <% end %>
+              <%= f.submit "Create post", data: { disable_with: 'Creating...' }, class: "submit-button" %>
+            <% end %>
+          </div>
         <% end %>
 
         <% if @artist.artist_posts.any? %>
@@ -134,48 +134,62 @@
 
       <div id="photos">
         <% if artist_signed_in? && current_artist == @artist %>
-          <%= form_for(@photo_album, url: artist_photo_albums_path(@artist)) do |f| %>
+          <div id="photoalbumclick">
+            Create a photo album
+          </div>
+          <div id="photoalbumcontainer">
+            <div class="form-container">
+              <%= form_for(@photo_album, url: artist_photo_albums_path(@artist)) do |f| %>
 
-            <div class="field">
-              <%= f.label :title %><br />
-              <%= f.text_field :title %>
+                <div class="field">
+                  <%= f.label :title, class: "label" %><br />
+                  <%= f.text_field :title, class: "text-field" %>
+                </div>
+
+                <%= f.submit "Create photo album", data: { disable_with: 'Creating...' }, class: "submit-button" %>
+              <% end %>
             </div>
-
-            <%= f.submit "Create photo album", data: { disable_with: 'Creating...' } %>
-          <% end %>
+          </div>
         <% end %>
 
         <% if @artist.artist_photo_albums.any? %>
           <% @artist.artist_photo_albums.each do |photo_album| %>
-            <%= photo_album.title %> <%= link_to "Delete", artist_photo_album_path(@artist, photo_album), method: :delete, data: { disable_with: 'Deleting...' } if artist_signed_in? && current_artist == @artist %>
-
+          <div class="three-column">
+            <span class="medium-text"><%= photo_album.title %></span> <%= link_to "Delete", artist_photo_album_path(@artist, photo_album), method: :delete, data: { disable_with: 'Deleting...' } if artist_signed_in? && current_artist == @artist %>
             <% if artist_signed_in? && current_artist == @artist %>
-              <%= form_for(@photo, url: artist_photo_album_photos_path(@artist, photo_album)) do |f| %>
+              <div id="photoclick">
+                Add a photo to this album
+              </div>
+              <div id="photocontainer">
+                <div class="form-container-large">
+                  <%= form_for(@photo, url: artist_photo_album_photos_path(@artist, photo_album)) do |f| %>
 
-                <div class="field">
-                  <%= f.label :title %><br />
-                  <%= f.text_field :title %>
-                </div>
-                <div class="field">
-                  <%= f.label :photo %><br />
-                  <%= f.file_field :photo %>
-                </div>
-                <div class="field">
-                  <%= f.label :description %><br />
-                  <%= f.text_area :description %>
-                </div>
-                <%= f.label :cover_photo %>
-                <%= f.check_box :cover_photo %>
-                <%= f.label :profile_photo %>
-                <%= f.check_box :profile_photo %><br />
+                    <div class="field">
+                      <%= f.label :title, class: "label" %><br />
+                      <%= f.text_field :title, class: "text-field" %>
+                    </div>
+                    <div class="field">
+                      <%= f.label :photo, class: "label" %><br />
+                      <%= f.file_field :photo %>
+                    </div>
+                    <div class="field">
+                      <%= f.label :description, class: "label" %><br />
+                      <%= f.text_area :description, class: "text-area" %>
+                    </div>
+                    <%= f.label :cover_photo %>
+                    <%= f.check_box :cover_photo %>
+                    <%= f.label :profile_photo %>
+                    <%= f.check_box :profile_photo %><br />
 
-                <%= f.submit "Create photo", data: { disable_with: 'Creating...' } %>
-              <% end %>
+                    <%= f.submit "Create photo", data: { disable_with: 'Creating...' }, class: "submit-button" %>
+                  <% end %>
+                </div>
+              </div>
             <% end %>
 
           <% if photo_album.artist_photos.any? %>
             <% photo_album.artist_photos.each do |photo| %>
-            <%= photo.title %> <%= photo.artist_id %>
+            <%= photo.title %>
 
             <%= image_tag(photo.photo_url.to_s) %>
 
@@ -183,37 +197,52 @@
             <% end %>
           <% end %>
 
+          </div>
           <% end %>
         <% end %>
-      </div>
+      </div> 
+
 
 
 
 
       <div id="videos">
         <% if artist_signed_in? && current_artist == @artist %>
-          <%= form_for(@video, url: artist_videos_path(@artist)) do |f| %>
+          <div id="videoclick">
+            Create a video
+          </div>
+          <div id="videocontainer">
+            <div class="form-container">
+              <%= form_for(@video, url: artist_videos_path(@artist)) do |f| %>
 
-            <div class="field">
-              <%= f.label :title %><br />
-              <%= f.text_field :title %>
-            </div>
-            <div class="field">
-              <%= f.label :description %><br />
-              <%= f.text_area :description %>
-            </div>
-            <div class="field">
-              <%= f.label :video %><br />
-              <%= f.file_field :video %>
-            </div>
+                <div class="field">
+                  <%= f.label :title, class: "label" %><br />
+                  <%= f.text_field :title, class: "text-field" %>
+                </div>
+                <div class="field">
+                  <%= f.label :description, class: "label" %><br />
+                  <%= f.text_area :description, class: "text-area" %>
+                </div>
+                <div class="field">
+                  <%= f.label :video, class: "label" %><br />
+                  <%= f.file_field :video %>
+                </div>
 
-            <%= f.submit "Create video", data: { disable_with: 'Creating...' } %>
-          <% end %>
+                <%= f.submit "Create video", data: { disable_with: 'Creating...' }, class: "submit-button" %>
+              <% end %>
+            </div>
+          </div>
         <% end %>
 
         <% if @artist.artist_videos.any? %>
           <% @artist.artist_videos.each do |video| %>
-            <%= video.title %> <%= video.artist_id %> <%= link_to "Delete", artist_video_path(@artist, video), method: :delete, data: { disable_with: 'Deleting...' } if artist_signed_in? && current_artist == @artist %>
+            <span class="medium-text"><%= video.title %></span> <%= link_to "Delete", artist_video_path(@artist, video), method: :delete, data: { disable_with: 'Deleting...' } if artist_signed_in? && current_artist == @artist %>
+            <div class="one-space">
+              <%= video_tag(video.video_url.to_s) %>
+            </div>
+            <div class="one-space">
+              <%= video.description %>
+            </div>
           <% end %>
         <% end %>
       </div>
@@ -223,89 +252,103 @@
 
       <div id="tours">
         <% if artist_signed_in? && current_artist == @artist %>
-          <%= form_for(@tour, url: artist_tours_path(@artist)) do |f| %>
+        <div id="tourclick">
+          Create a tour
+        </div>
+        <div id="tourcontainer">
+          <div class="form-container">
+            <%= form_for(@tour, url: artist_tours_path(@artist)) do |f| %>
 
-            <div class="field">
-              <%= f.label :title %><br />
-              <%= f.text_field :title %>
-            </div>
-            <div class="field">
-              <%= f.label :description %><br />
-              <%= f.text_area :description %>
-            </div>
-            <div class="field">
-              <%= f.label :amount_of_shows %><br />
-              <%= f.text_field :amount_of_shows %>
-            </div>
-            <div class="field">
-              <%= f.label :artists %><br />
-              <%= f.text_field :artists %>
-            </div>
-            <div class="field">
-              <%= f.label :image %><br />
-              <%= f.file_field :image %>
-            </div>
+              <div class="field">
+                <%= f.label :title, class: "label" %><br />
+                <%= f.text_field :title, class: "text-field" %>
+              </div>
+              <div class="field">
+                <%= f.label :description, class: "label" %><br />
+                <%= f.text_area :description, class: "text-area" %>
+              </div>
+              <div class="field">
+                <%= f.label :amount_of_shows, class: "label" %><br />
+                <%= f.text_field :amount_of_shows, class: "text-field" %>
+              </div>
+              <div class="field">
+                <%= f.label :artists, class: "label" %><br />
+                <%= f.text_field :artists, class: "text-field" %>
+              </div>
+              <div class="field">
+                <%= f.label :image, class: "label" %><br />
+                <%= f.file_field :image %>
+              </div>
 
-            <%= f.submit "Create tour", data: { disable_with: 'Creating...' } %>
+              <%= f.submit "Create tour", data: { disable_with: 'Creating...' }, class: "submit-button" %>
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
 
         <% if @artist.artist_tours.any? %>
           <% @artist.artist_tours.each do |tour| %>
             <%= tour.title %> <%= link_to "Delete", artist_tour_path(@artist, tour), method: :delete, data: { disable_with: 'Deleting...' } if artist_signed_in? && current_artist == @artist %>
+            <div id="showclick">
+              Add a show
+            </div>
+            <div id="showcontainer">
+              <div class="form-container">
+                <%= form_for(@show, url: artist_tour_shows_path(@artist, tour)) do |f| %>
 
-            <%= form_for(@show, url: artist_tour_shows_path(@artist, tour)) do |f| %>
+                <div class="field">
+                  <%= f.label :title, class: "label" %><br />
+                  <%= f.text_field :title, class: "text-field" %>
+                </div>
+                <div class="field">
+                  <%= f.label :month, class: "label" %><br />
+                  <%= f.text_field :month, class: "text-field" %>
+                </div>
+                <div class="field">
+                  <%= f.label :day, class: "label" %><br />
+                  <%= f.text_field :day, class: "text-field" %>
+                </div>
+                <div class="field">
+                  <%= f.label :year, class: "label" %><br />
+                  <%= f.text_field :year, class: "text-field" %>
+                </div>
+                <div class="field">
+                  <%= f.label :venue, class: "label" %><br />
+                  <%= f.text_field :venue, class: "text-field" %>
+                </div>
+                <div class="field">
+                  <%= f.label :description, class: "label" %><br />
+                  <%= f.text_area :description, class: "text-area" %>
+                </div>
+                <div class="field">
+                  <%= f.label :ticket_url, class: "label" %><br />
+                  <%= f.text_field :ticket_url, class: "text-field" %>
+                </div>
+                <div class="field">
+                  <%= f.label :image, class: "label" %><br />
+                  <%= f.file_field :image %>
+                </div>
 
-            <div class="field">
-              <%= f.label :title %><br />
-              <%= f.text_field :title %>
-            </div>
-            <div class="field">
-              <%= f.label :month %><br />
-              <%= f.text_field :month %>
-            </div>
-            <div class="field">
-              <%= f.label :day %><br />
-              <%= f.text_field :day %>
-            </div>
-            <div class="field">
-              <%= f.label :year %><br />
-              <%= f.text_field :year %>
-            </div>
-            <div class="field">
-              <%= f.label :venue %><br />
-              <%= f.text_field :venue %>
-            </div>
-            <div class="field">
-              <%= f.label :description %><br />
-              <%= f.text_area :description %>
-            </div>
-            <div class="field">
-              <%= f.label :ticket_url %><br />
-              <%= f.text_field :ticket_url %>
-            </div>
-            <div class="field">
-              <%= f.label :image %><br />
-              <%= f.file_field :image %>
-            </div>
-            <div class="field">
-              <%= f.label :is_independent? %><br />
-              <%= f.check_box :is_independent? %>
-            </div>
+                <%= fields_for :artist_show_location do |u| %>
+                  <div class="field">
+                    <%= u.label :city, class: "label" %><br />
+                    <%= u.text_field :city, class: "text-field" %>
+                  </div>
+                <% end %>
 
-            <%= fields_for :artist_show_location do |u| %>
-              <div class="field">
-                <%= u.label :city %><br />
-                <%= u.text_field :city %>
+                <div class="field">
+                  <%= f.label :is_independent? %>
+                  <%= f.check_box :is_independent? %>
+                </div>
+
+                <%= f.submit "Create show", data: { disable_with: 'Creating...' }, class: "submit-button" %>
+                <% end %>
               </div>
-            <% end %>
-
-            <%= f.submit "Create show", data: { disable_with: 'Creating...' } %>
-          <% end %>
+            </div>
 
           <% if tour.artist_shows.any? %>
             <% tour.artist_shows.each do |show| %>
-            <%= show.title %> <%= show.artist_id %> <%= show.artist_show_location.city %>
+            <%= show.title %> <%= show.artist_show_location.city %>
 
             <%= link_to "Delete", artist_tour_show_path(@artist, tour, show), method: :delete, data: { disable_with: 'Deleting...' } if artist_signed_in? && current_artist == @artist %>
             <% end %>
@@ -320,55 +363,62 @@
 
       <div id="merch">
         <% if artist_signed_in? && current_artist == @artist %>
-          <%= form_for(@item, url: artist_items_path(@artist)) do |f| %>
+          <div id="merchclick">
+            Add a show
+          </div>
+          <div id="merchcontainer">
+            <div class="form-container">
+              <%= form_for(@item, url: artist_items_path(@artist)) do |f| %>
 
-            <div class="field">
-              <%= f.label :title, class: "label" %><br />
-              <%= f.text_field :title, class: "text-field" %>
-            </div>
-            <div class="field">
-              <%= f.label :description %><br />
-              <%= f.text_field :description %>
-            </div>
-            <div class="field">
-              <%= f.label :category, class: "label" %><br />
-              <%= f.text_field :category, class: "text-field" %>
-            </div>
-            <div class="field">
-              <%= f.label :base_price, class: "label" %><br />
-              <%= f.text_field :base_price, class: "text-field" %>
-            </div>
-            <div class="field">
-              <%= f.label :shipping_price, class: "label" %><br />
-              <%= f.text_field :shipping_price, class: "text-field" %>
-            </div>
-            <div class="field">
-              <%= f.label :currency %><br />
-              <%= f.text_field :currency %>
-            </div>
-            <div class="field">
-              <%= f.label :quantity %><br />
-              <%= f.text_field :quantity %>
-            </div>
-            <div class="field">
-              <%= f.label :options %><br />
-              <%= f.text_field :options %>
-            </div>
-            <div class="field">
-              <%= f.label :image %><br />
-              <%= f.text_field :image %>
-            </div>
-            <div class="field">
-              <%= f.label :image_two %><br />
-              <%= f.text_field :image_two %>
-            </div>
-            <div class="field">
-              <%= f.label :image_three %><br />
-              <%= f.text_field :image_three %>
-            </div>
+                <div class="field">
+                  <%= f.label :title, class: "label" %><br />
+                  <%= f.text_field :title, class: "text-field" %>
+                </div>
+                <div class="field">
+                  <%= f.label :description, class: "label" %><br />
+                  <%= f.text_area :description, class: "text-area" %>
+                </div>
+                <div class="field">
+                  <%= f.label :category, class: "label" %><br />
+                  <%= f.text_field :category, class: "text-field" %>
+                </div>
+                <div class="field">
+                  <%= f.label :base_price, class: "label" %><br />
+                  <%= f.text_field :base_price, class: "text-field" %>
+                </div>
+                <div class="field">
+                  <%= f.label :shipping_price, class: "label" %><br />
+                  <%= f.text_field :shipping_price, class: "text-field" %>
+                </div>
+                <div class="field">
+                  <%= f.label :currency, class: "label" %><br />
+                  <%= f.text_field :currency, class: "text-field" %>
+                </div>
+                <div class="field">
+                  <%= f.label :quantity, class: "label" %><br />
+                  <%= f.text_field :quantity, class: "text-field" %>
+                </div>
+                <div class="field">
+                  <%= f.label :options, class: "label" %><br />
+                  <%= f.text_field :options, class: "text-field" %>
+                </div>
+                <div class="field">
+                  <%= f.label :image, class: "label" %><br />
+                  <%= f.file_field :image %>
+                </div>
+                <div class="field">
+                  <%= f.label :image_two, class: "label" %><br />
+                  <%= f.file_field :image_two %>
+                </div>
+                <div class="field">
+                  <%= f.label :image_three, class: "label" %><br />
+                  <%= f.file_field :image_three %>
+                </div>
 
-            <%= f.submit "Create item", data: { disable_with: 'Creating...' } %>
-          <% end %>
+                <%= f.submit "Create item", data: { disable_with: 'Creating...' } %>
+              <% end %>
+            </div>
+          </div>
         <% end %>
 
         <% if @artist.artist_items.any? %>
@@ -382,78 +432,91 @@
 
       <div id="music">
         <% if artist_signed_in? && current_artist == @artist %>
-          <%= form_for(@album, url: artist_albums_path(@artist)) do |f| %>
+          <div id="albumclick">
+            Add an album
+          </div>
+          <div id="albumcontainer">
+            <div class="form-container">
+              <%= form_for(@album, url: artist_albums_path(@artist)) do |f| %>
 
-            <div class="field">
-              <%= f.label :title %><br />
-              <%= f.text_field :title %>
-            </div>
-            <div class="field">
-              <%= f.label :description %><br />
-              <%= f.text_area :description %>
-            </div>
-            <div class="field">
-              <%= f.label :release_month %><br />
-              <%= f.text_field :release_month %>
-            </div>
-            <div class="field">
-              <%= f.label :release_day %><br />
-              <%= f.text_field :release_day %>
-            </div>
-            <div class="field">
-              <%= f.label :release_year %><br />
-              <%= f.text_field :release_year %>
-            </div>
-            <div class="field">
-              <%= f.label :price %><br />
-              <%= f.text_field :price %>
-            </div>
-            <div class="field">
-              <%= f.label :currency %><br />
-              <%= f.text_field :currency %>
-            </div>
-            <div class="field">
-              <%= f.label :image %><br />
-              <%= f.file_field :image %>
-            </div>
+                <div class="field">
+                  <%= f.label :title, class: "label" %><br />
+                  <%= f.text_field :title, class: "text-field" %>
+                </div>
+                <div class="field">
+                  <%= f.label :description, class: "label" %><br />
+                  <%= f.text_area :description, class: "text-area" %>
+                </div>
+                <div class="field">
+                  <%= f.label :release_month, class: "label" %><br />
+                  <%= f.text_field :release_month, class: "text-field" %>
+                </div>
+                <div class="field">
+                  <%= f.label :release_day, class: "label" %><br />
+                  <%= f.text_field :release_day, class: "text-field" %>
+                </div>
+                <div class="field">
+                  <%= f.label :release_year, class: "label" %><br />
+                  <%= f.text_field :release_year, class: "text-field" %>
+                </div>
+                <div class="field">
+                  <%= f.label :price, class: "label" %><br />
+                  <%= f.text_field :price, class: "text-field" %>
+                </div>
+                <div class="field">
+                  <%= f.label :currency, class: "label" %><br />
+                  <%= f.text_field :currency, class: "text-field" %>
+                </div>
+                <div class="field">
+                  <%= f.label :image, class: "label" %><br />
+                  <%= f.file_field :image %>
+                </div>
 
-            <%= f.submit "Create album", data: { disable_with: 'Creating...' } %>
-          <% end %>
+                <%= f.submit "Create album", data: { disable_with: 'Creating...' } %>
+              <% end %>
+            </div>
+          </div>
         <% end %>
 
         <% if @artist.artist_albums.any? %>
           <% @artist.artist_albums.each do |album| %>
             <%= album.title %> <%= link_to "Delete", artist_album_path(@artist, album), method: :delete, data: { disable_with: 'Deleting...' } if artist_signed_in? && current_artist == @artist %>
+          <div id="trackclick">
+            Add a track
+          </div>
+          <div id="trackcontainer">
+            <div class="form-container">
+              <%= form_for(@track, url: artist_album_tracks_path(@artist, album)) do |f| %>
 
-            <%= form_for(@track, url: artist_album_tracks_path(@artist, album)) do |f| %>
+              <div class="field">
+                <%= f.label :title %><br />
+                <%= f.text_field :title %>
+              </div>
+              <div class="field">
+                <%= f.label :track_number %><br />
+                <%= f.text_field :track_number %>
+              </div>
+              <div class="field">
+                <%= f.label :price %><br />
+                <%= f.text_field :price %>
+              </div>
+              <div class="field">
+                <%= f.label :currency %><br />
+                <%= f.text_field :currency %>
+              </div>
+              <div class="field">
+                <%= f.label :audio %><br />
+                <%= f.text_field :audio %>
+              </div>
+              <div class="field">
+                <%= f.label :lyrics %><br />
+                <%= f.text_area :lyrics %>
+              </div>
 
-            <div class="field">
-              <%= f.label :title %><br />
-              <%= f.text_field :title %>
+              <%= f.submit "Create track", data: { disable_with: 'Creating...' }, class: "submit-button" %>
+            <% end %>
             </div>
-            <div class="field">
-              <%= f.label :track_number %><br />
-              <%= f.text_field :track_number %>
-            </div>
-            <div class="field">
-              <%= f.label :price %><br />
-              <%= f.text_field :price %>
-            </div>
-            <div class="field">
-              <%= f.label :currency %><br />
-              <%= f.text_field :currency %>
-            </div>
-            <div class="field">
-              <%= f.label :audio %><br />
-              <%= f.text_field :audio %>
-            </div>
-            <div class="field">
-              <%= f.label :lyrics %><br />
-              <%= f.text_area :lyrics %>
-            </div>
-
-            <%= f.submit "Create track", data: { disable_with: 'Creating...' } %>
-          <% end %>
+          </div>
 
           <% if album.artist_tracks.any? %>
             <% album.artist_tracks.each do |track| %>
