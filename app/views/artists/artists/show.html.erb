@@ -288,7 +288,7 @@
 
         <% if @artist.artist_tours.any? %>
           <% @artist.artist_tours.each do |tour| %>
-            <%= tour.title %> <%= link_to "Delete", artist_tour_path(@artist, tour), method: :delete, data: { disable_with: 'Deleting...' } if artist_signed_in? && current_artist == @artist %>
+            <span class="medium-text"><%= tour.title %></span> <%= link_to "Delete", artist_tour_path(@artist, tour), method: :delete, data: { disable_with: 'Deleting...' } if artist_signed_in? && current_artist == @artist %>
             <div id="showclick">
               Add a show
             </div>
@@ -348,7 +348,7 @@
 
           <% if tour.artist_shows.any? %>
             <% tour.artist_shows.each do |show| %>
-            <%= show.title %> <%= show.artist_show_location.city %>
+            <span class="medium-text"><%= show.title %></span> <%= show.artist_show_location.city %>
 
             <%= link_to "Delete", artist_tour_show_path(@artist, tour, show), method: :delete, data: { disable_with: 'Deleting...' } if artist_signed_in? && current_artist == @artist %>
             <% end %>
@@ -363,10 +363,10 @@
 
       <div id="merch">
         <% if artist_signed_in? && current_artist == @artist %>
-          <div id="merchclick">
-            Add a show
+          <div id="itemclick">
+            Add an item
           </div>
-          <div id="merchcontainer">
+          <div id="itemcontainer">
             <div class="form-container">
               <%= form_for(@item, url: artist_items_path(@artist)) do |f| %>
 
@@ -415,7 +415,7 @@
                   <%= f.file_field :image_three %>
                 </div>
 
-                <%= f.submit "Create item", data: { disable_with: 'Creating...' } %>
+                <%= f.submit "Create item", data: { disable_with: 'Creating...' }, class: "submit-button" %>
               <% end %>
             </div>
           </div>
@@ -423,7 +423,7 @@
 
         <% if @artist.artist_items.any? %>
           <% @artist.artist_items.each do |item| %>
-            <%= item.title %> <%= item.artist_id %> <%= link_to "Delete", artist_item_path(@artist, item), method: :delete, data: { disable_with: 'Deleting...' } if artist_signed_in? && current_artist == @artist %>
+            <span class="medium-text"><%= item.title %></span> <%= item.artist_id %> <%= link_to "Delete", artist_item_path(@artist, item), method: :delete, data: { disable_with: 'Deleting...' } if artist_signed_in? && current_artist == @artist %>
           <% end %>
         <% end %>
       </div>
@@ -472,7 +472,7 @@
                   <%= f.file_field :image %>
                 </div>
 
-                <%= f.submit "Create album", data: { disable_with: 'Creating...' } %>
+                <%= f.submit "Create album", data: { disable_with: 'Creating...' }, class: "submit-button" %>
               <% end %>
             </div>
           </div>
@@ -480,7 +480,7 @@
 
         <% if @artist.artist_albums.any? %>
           <% @artist.artist_albums.each do |album| %>
-            <%= album.title %> <%= link_to "Delete", artist_album_path(@artist, album), method: :delete, data: { disable_with: 'Deleting...' } if artist_signed_in? && current_artist == @artist %>
+            <span class="medium-text"><%= album.title %></span> <%= link_to "Delete", artist_album_path(@artist, album), method: :delete, data: { disable_with: 'Deleting...' } if artist_signed_in? && current_artist == @artist %>
           <div id="trackclick">
             Add a track
           </div>
@@ -489,28 +489,28 @@
               <%= form_for(@track, url: artist_album_tracks_path(@artist, album)) do |f| %>
 
               <div class="field">
-                <%= f.label :title %><br />
-                <%= f.text_field :title %>
+                <%= f.label :title, class: "label" %><br />
+                <%= f.text_field :title, class: "text-field" %>
               </div>
               <div class="field">
-                <%= f.label :track_number %><br />
-                <%= f.text_field :track_number %>
+                <%= f.label :track_number, class: "label" %><br />
+                <%= f.text_field :track_number, class: "text-field" %>
               </div>
               <div class="field">
-                <%= f.label :price %><br />
-                <%= f.text_field :price %>
+                <%= f.label :price, class: "label" %><br />
+                <%= f.text_field :price, class: "text-field" %>
               </div>
               <div class="field">
-                <%= f.label :currency %><br />
-                <%= f.text_field :currency %>
+                <%= f.label :currency, class: "label" %><br />
+                <%= f.text_field :currency, class: "text-field" %>
               </div>
               <div class="field">
-                <%= f.label :audio %><br />
-                <%= f.text_field :audio %>
+                <%= f.label :audio, class: "label" %><br />
+                <%= f.text_field :audio, class: "text-field" %>
               </div>
               <div class="field">
-                <%= f.label :lyrics %><br />
-                <%= f.text_area :lyrics %>
+                <%= f.label :lyrics, class: "label" %><br />
+                <%= f.text_area :lyrics, class: "text-area" %>
               </div>
 
               <%= f.submit "Create track", data: { disable_with: 'Creating...' }, class: "submit-button" %>
@@ -535,39 +535,87 @@
 
 
       <div id="profile">
-        <% if artist_signed_in? %>
-          <% if current_artist.artist_profile.year_founded.blank? %>
-          you have profile
-          <% else %>
-          your year founded is <%= current_artist.artist_profile.year_founded %>
-          <% end %>
-          <% if current_artist.artist_genre.genre.blank? %>
-          you have genre
-          <% else %>
-          your genre is <%= current_artist.artist_genre.genre %>
-          <% end %>
-          <% if current_artist.artist_location.city.blank? %>
-          you have location
-          <% else %>
-          your city is <%= current_artist.artist_location.city %>
-          <% end %>
-          <% if current_artist.artist_theme.main_color.blank? %>
-          you have theme
-          <% else %>
-          your main color is <%= current_artist.artist_theme.main_color %>
-          <% end %>
-          </br>
-          <% if current_artist.artist_store.first_name.blank? %>
-          you have store
-          <% else %>
-          your store is <%= current_artist.artist_store.first_name %>
-          <% end %>
-          </br>
-          <% @artist.artist_members.each do |member| %>
-            <%= member.name %>
-          <% end %></br>
-          <%= link_to "Edit profile", edit_artist_profile_path(current_artist) %>
+
+        <%= link_to "Edit profile", edit_artist_profile_path(current_artist) if artist_signed_in? && @artist == current_artist %>
+
+        <% unless @artist.artist_location.city.blank? %>
+          <div class="one-space">
+            <span class="middle-text">Location:</span> <%= @artist.artist_location.city %><%= ", " + @artist.artist_location.state if @artist.artist_location.state.present? %><%= " , " + @artist.artist_location.country if @artist.artist_location.country.present? %>
+          </div>
         <% end %>
+
+        <% unless @artist.artist_genre.genre.blank? %>
+          <div class="one-space">
+            <span class="middle-text">Genre:</span> <%= @artist.artist_genre.genre %><%= ", " + @artist.artist_genre.subgenre if @artist.artist_genre.subgenre.present? %>
+          </div>
+        <% end %>
+
+        <% unless @artist.artist_profile.year_founded.blank? %>
+          <div class="one-space">
+            <span class="middle-text">Year founded:</span> <%= @artist.artist_profile.year_founded %>
+          </div>
+        <% end %>
+
+        <% unless @artist.artist_profile.record_label.blank? %>
+          <div class="one-space">
+            <span class="middle-text">Record label:</span> <%= @artist.artist_profile.record_label %>
+          </div>
+        <% end %>
+
+        <% unless @artist.artist_profile.influences.blank? %>
+          <div class="one-space">
+            <span class="middle-text">Influences:</span> <%= @artist.artist_profile.influences %>
+          </div>
+        <% end %>
+
+        <% unless @artist.artist_profile.facebook_url.blank? %>
+          <div class="one-space">
+            <span class="middle-text">Facebook:</span> <%= link_to @artist.artist_profile.facebook_handle, @artist.artist_profile.facebook_url %>
+          </div>
+        <% end %>
+
+        <% unless @artist.artist_profile.twitter_url.blank? %>
+          <div class="one-space">
+            <span class="middle-text">Twitter:</span> <%= link_to @artist.artist_profile.twitter_handle, @artist.artist_profile.twitter_url %>
+          </div>
+        <% end %>
+
+        <% unless @artist.artist_profile.instagram_url.blank? %>
+          <div class="one-space">
+            <span class="middle-text">Instagram:</span> <%= link_to @artist.artist_profile.instagram_handle, @artist.artist_profile.instagram_url %>
+          </div>
+        <% end %>
+
+        <% unless @artist.artist_profile.youtube_url.blank? %>
+          <div class="one-space">
+            <span class="middle-text">YouTube:</span> <%= link_to @artist.artist_profile.youtube_handle, @artist.artist_profile.youtube_url %>
+          </div>
+        <% end %>
+
+        <% unless @artist.artist_profile.letlyrics_url.blank? %>
+          <div class="one-space">
+            <span class="middle-text">LetLyrics:</span> <%= link_to @artist.name, @artist.artist_profile.letlyrics_url %>
+          </div>
+        <% end %>
+
+        <% unless @artist.artist_profile.general_manager_name.blank? %>
+          <div class="one-space">
+            <span class="middle-text">General Manager:</span> <%= @artist.artist_profile.general_manager_name %> - <%= @artist.artist_profile.general_manager_email %>
+          </div>
+        <% end %>
+
+        <% unless @artist.artist_profile.press_contact_email.blank? %>
+          <div class="one-space">
+            <span class="middle-text">Press Contact:</span> <%= @artist.artist_profile.press_contact_name %> - <%= @artist.artist_profile.press_contact_email %>
+          </div>
+        <% end %>
+
+        <% unless @artist.artist_profile.booking_agent_email.blank? %>
+          <div class="one-space">
+            <span class="middle-text">Booking Agent:</span> <%= @artist.artist_profile.booking_agent_name %> - <%= @artist.artist_profile.booking_agent_email %>
+          </div>
+        <% end %>
+
       </div>
 
 

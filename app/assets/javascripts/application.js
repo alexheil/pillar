@@ -150,8 +150,8 @@ var createPosts = function() {
     $('#showcontainer').toggle(300);
   });
 
-  $('#merchclick').click(function() {
-    $('#merchcontainer').toggle(300);
+  $('#itemclick').click(function() {
+    $('#itemcontainer').toggle(300);
   });
 
   $('#albumclick').click(function() {

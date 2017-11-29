@@ -5,15 +5,91 @@
     <%= f.label :year_founded %><br />
     <%= f.text_field :year_founded %>
   </div>
+  <div class="field">
+    <%= f.label :record_label %><br />
+    <%= f.text_field :record_label %>
+  </div>
+  <div class="field">
+    <%= f.label :influences %><br />
+    <%= f.text_field :influences %>
+  </div>
+  <div class="field">
+    <%= f.label :facebook_handle %><br />
+    <%= f.text_field :facebook_handle %>
+  </div>
+  <div class="field">
+    <%= f.label :facebook_url %><br />
+    <%= f.text_field :facebook_url %>
+  </div>
+  <div class="field">
+    <%= f.label :twitter_handle %><br />
+    <%= f.text_field :twitter_handle %>
+  </div>
+  <div class="field">
+    <%= f.label :twitter_url %><br />
+    <%= f.text_field :twitter_url %>
+  </div>
+  <div class="field">
+    <%= f.label :instagram_handle %><br />
+    <%= f.text_field :instagram_handle %>
+  </div>
+  <div class="field">
+    <%= f.label :instagram_url %><br />
+    <%= f.text_field :instagram_url %>
+  </div>
+  <div class="field">
+    <%= f.label :youtube_handle %><br />
+    <%= f.text_field :youtube_handle %>
+  </div>
+  <div class="field">
+    <%= f.label :youtube_url %><br />
+    <%= f.text_field :youtube_url %>
+  </div>
+  <div class="field">
+    <%= f.label :letlyrics_url %><br />
+    <%= f.text_field :letlyrics_url %>
+  </div>
+  <div class="field">
+    <%= f.label :general_manager_name %><br />
+    <%= f.text_field :general_manager_name %>
+  </div>
+  <div class="field">
+    <%= f.label :general_manager_email %><br />
+    <%= f.text_field :general_manager_email %>
+  </div>
+  <div class="field">
+    <%= f.label :press_contact_name %><br />
+    <%= f.text_field :press_contact_name %>
+  </div>
+  <div class="field">
+    <%= f.label :press_contact_email %><br />
+    <%= f.text_field :press_contact_email %>
+  </div>
+  <div class="field">
+    <%= f.label :booking_agent_name %><br />
+    <%= f.text_field :booking_agent_name %>
+  </div>
+  <div class="field">
+    <%= f.label :booking_agent_email %><br />
+    <%= f.text_field :booking_agent_email %>
+  </div>
 
   <%= fields_for :artist_location, @location do |u| %>
     <div class="field">
       <%= u.label :city %><br />
       <%= u.text_field :city %>
     </div>
+    <div class="field">
+      <%= u.label :state %><br />
+      <%= u.text_field :state %>
+    </div>
+    <div class="field">
+      <%= u.label :country %><br />
+      <%= u.text_field :country %>
+    </div>
   <% end %>
 
-    <%= fields_for :artist_theme, @theme do |u| %>
+  <%= fields_for :artist_theme, @theme do |u| %>
     <div class="field">
       <%= u.label :main_color %><br />
       <%= u.text_field :main_color %>
@@ -24,6 +100,10 @@
     <div class="field">
       <%= u.label :genre %><br />
       <%= u.text_field :genre %>
+    </div>
+    <div class="field">
+      <%= u.label :subgenre %><br />
+      <%= u.text_field :subgenre %>
     </div>
   <% end %>
 

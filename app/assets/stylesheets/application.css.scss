@@ -65,6 +65,7 @@ a {
 
 .a {
 	color: $red;
+	cursor: pointer;
   text-decoration: none;
   -webkit-transition: .3s;
   -moz-transition: .3s;
@@ -409,7 +410,7 @@ a {
 	display: none;
 }
 
-#merchclick {
+#itemclick {
 	color: $red;
 	cursor: pointer;
 	border-left: transparent 3px solid;
@@ -424,7 +425,7 @@ a {
   }
 }
 
-#merchcontainer {
+#itemcontainer {
 	display: none;
 }
 
